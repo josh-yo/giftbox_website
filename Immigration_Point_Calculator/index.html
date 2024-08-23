@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Visa Points Calculator" >
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Visa Points Calculator</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center">
+        <p class="scoreTotal">Your score：0</p>
+    </nav>
+    <div class="fvContainer">
+        <div class="row justify-content-center">
+            <div class="title pointArea col-11 col-md-8">
+                <div class="content">
+                    <h1 class="text-center">Visa Points Calculator</h1>
+                    <p>This Points Test calculator can give you an idea of your points score for a points-tested skilled visa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Questions -->
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8" style="margin-top: 2.5rem;">
+                <div class="card">
+                    <div class="d-flex justify-content-between agePoint">
+                        <h3>Age</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="ageButton">
+                        <button type="button" name="age" value="25">18-24</button>
+                        <button type="button" name="age" value="30">25-32</button>
+                        <button type="button" name="age" value="25">33-39</button>
+                        <button type="button" name="age" value="15">40-44</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between englishPoint">
+                        <h3>English language requirements</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="englishButton">
+                        <button type="button" name="english" value="0">Competent English（IELTS 6 for each subject）</button>
+                        <button type="button" name="english" value="10">Proficient English（ IELTS 7 for each subject）</button>
+                        <button type="button" name="english" value="20">Superior English（ IELTS 8 for each subject）</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between overSeasWorkPoint">
+                        <h3>Overseas work Experience</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="overSeasWorkButton">
+                        <button type="button" name="overSeasWork" value="0">Less than 3 years</button>
+                        <button type="button" name="overSeasWork" value="5">At least 3 but less than 5 years</button>
+                        <button type="button" name="overSeasWork" value="10">At least 5 but less than 8 years</button>
+                        <button type="button" name="overSeasWork" value="15" id="overSeasWork8years">At least 8 years</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auWorkPoint">
+                        <h3>Australian work Experience</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="auWorkButton">
+                        <button type="button" name="auWork" value="0">Less than 1 years</button>
+                        <button type="button" name="auWork" value="5">At least 3 years</button>
+                        <button type="button" name="auWork" value="10">At least 5 years</button>
+                        <button type="button" name="auWork" value="15">At least 5 but less than 8 years</button>
+                        <button type="button" name="auWork" value="20" id="auWork8years">At least 8 years</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between educationalPoint">
+                        <h3>Educational Qualifications</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="educationalButton">
+                        <button type="button" name="educational" value="20" id="phd">PHD</button>
+                        <button type="button" name="educational" value="15" id="masters">Masters</button>
+                        <button type="button" name="educational" value="10" id="diploma">Diploma after Bachelors</button>
+                        <br>
+                        <button type="button" name="educational" value="15" id="bachelors">Bachelors</button>
+                        <button type="button" name="educational" value="10" id="secondary">Diploma after secondary</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auStudyPoint">
+                        <h3>Australian study requirement</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <p>Did you study in Australia(2 academic years)?</p>
+                    <div class="auStudyButton">
+                        <button type="button" name="auStudy" value="5">Yes</button>
+                        <button type="button" name="auStudy" value="0">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auSteamPoint">
+                        <h3>Specialist education qualification</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <p>Do you hold a Masters by research or a Doctorate degree from an Australian educational institution in the STEM fields?</p>
+                    <div class="auSteamButton">
+                        <button type="button" name="auSteam" value="10">Yes</button>
+                        <button type="button" name="auSteam" value="0">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auCertifiedPoint">
+                        <h3>Credentialled community language</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <p>Have you been accredited at the paraprofessional level or have a community language credential for interpreting or translating by the National Accreditation Authority for Translators and Interpreters?</p>
+                    <div class="auCertifiedButton">
+                        <button type="button" name="auCertified" value="5">Yes</button>
+                        <button type="button" name="auCertified" value="0">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auRegionalPoint">
+                        <h3>Study in regional Australia</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <p>Your Australian education is from regional Australia?</p>
+                    <div class="auRegionalButton">
+                        <button type="button" name="auRegional" value="5">Yes</button>
+                        <button type="button" name="auRegional" value="0">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auPartnerPoint">
+                        <h3>Partner skills</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <div class="auPartnerButton">
+                        <button type="button" name="auPartner" value="10">Skilled (must have skills assessment and minimum competent English)</button>
+                        <button type="button" name="auPartner" value="5">Not skilled, but has competent English</button>
+                        <button type="button" name="auPartner" value="10" id="single">I'm single</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card-group pointArea col-11 col-md-8">
+                <div class="card">
+                    <div class="d-flex justify-content-between auPYPoint">
+                        <h3>Professional year in Australia</h3>
+                        <p class="point text-center">0</p>
+                    </div>
+                    <p>Your Australian education is from regional Australia?</p>
+                    <div class="auPYButton">
+                        <button type="button" name="auPY" value="5">Yes</button>
+                        <button type="button" name="auPY" value="0">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        Coding by Josh 
+        <a href="https://github.com/josh-yo" target="_blank" style="margin-left: 10px;">
+            <i class="fa fa-github" style="font-size:36px; color:white;"></i>
+        </a>
+    </footer>
+
+    <style>
+        body{
+            background-color: white;
+            font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+        }
+        .fvContainer{
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fv.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 380px;
+            position: relative;
+        }
+        .title{
+            background: rgba(0,0,0,0.4);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            color: #fff;
+            text-align: center;
+            padding: 4% 3% 2% 3%;
+        
+        }
+        footer{
+            background-color: #343a40;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            padding: 10px 0 10px 0;
+
+        }
+        .scoreTotal{
+            color: #fff;
+            margin: 0px;
+
+        }
+        .point{
+            background: peru;
+            margin-top: 1%;
+            padding: 0.5%;
+            border-radius: 50%;
+            height: 45px;
+            width: 45px;
+        }
+        .pointArea{
+            border: 3px solid burlywood;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        .card{
+            background-color: initial;
+            padding-top: 1%;
+            padding-bottom: 2%;
+            border: 0px;
+        }
+        button{
+            padding: 10px;
+        }
+        .englishButton button{
+            margin-bottom: 8px;
+            width: 80%;
+        }
+        @media (max-width: 992px){
+            .englishButton button{
+                width: 100%;
+            }
+        }
+        .overSeasWorkButton button{
+            margin-bottom: 8px;
+        }
+        @media (max-width: 992px){
+            .overSeasWorkButton button{
+                width: 100%;
+            }
+        }
+        .auWorkButton button{
+            margin-bottom: 8px;
+        }
+        @media (max-width: 992px){
+            .auWorkButton button{
+                width: 100%;
+            }
+        }
+        .educationalButton button{
+            margin-bottom: 8px;
+        }
+        .auPartnerButton button{
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        @media (min-width: 992px){
+            .auPartnerButton button{
+                width: initial;
+            }
+            #single{
+                width: 33%;
+            }
+        }
+        @media (min-width: 1200px){
+            #single{
+                width: 41%;
+            }
+        }
+        @media (min-width: 992px){
+            #auWork8years{
+                width: 36%;
+            }
+        }
+        @media (min-width: 1200px){
+            #auWork8years{
+                width: 30%;
+            }
+        }
+        @media (min-width: 992px){
+            #overSeasWork8years{
+                width: 31%;
+            }
+        }
+        @media (min-width: 1200px){
+            #overSeasWork8years{
+                width: 26%;
+            }
+        }
+        #bachelors{
+            width: 28%;
+        }
+        #secondary{
+            width: 68%;
+        }
+        @media (min-width: 992px){
+            #phd{
+                width: 12%;
+            }
+            #masters{
+                width: 18%;
+            }
+            #diploma{
+                width: 45%;
+            }
+            #bachelors{
+                width: 25%;
+            }
+            #secondary{
+                width: 51%;
+            }
+        }
+        .checked{
+            background-color: #000;
+            color: #fff;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script sync src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha256-1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE/Y=" crossorigin="anonymous"></script>
+    <script src="js.js"></script>
+</body>
+</html>
