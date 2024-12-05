@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import logo from './logo.svg';
-import './App.css';
-
 import { useEffect } from 'react';
 import axios from 'axios';
 
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+
 function App() {
+
   useEffect(() => {
     console.log(process.env.REACT_APP_API_URL, process.env.REACT_APP_API_PATH);
     (async () => {
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <div className="App">
-
+      <Routes>
+        <Route path="/login" element={<Login/>}></Route>
+      </Routes>
     </div>
   );
 }
