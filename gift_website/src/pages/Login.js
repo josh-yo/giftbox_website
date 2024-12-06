@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     username: '',
     password: ''
@@ -19,27 +21,18 @@ function Login() {
     try {
         const res = await axios.post('/v2/admin/signin', data);
         const { token, expired } = res.data;
+         // Save token
         document.cookie =
           `managerToken=${token}; expires=${new Date(expired)};`;
-        // save token
+         // Navigate to the products page
+        if (res.data.success) {
+          navigate('/admin/products');
+        }
     } catch (error) {
         setLoginStatus(error.response.data);
     }
+
   }
-
-  useEffect(() =>{
-    // take token
-    const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("managerToken="))
-        ?.split("=")[1];
-
-    axios.defaults.headers.common['Authorization'] = token;
-
-    (async() =>{
-        const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
-    })();
-  }, [])
 
   return (<div className="container py-5">
     <div className="row justify-content-center">
