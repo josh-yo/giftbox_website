@@ -1,6 +1,36 @@
-import {Outlet} from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Dashboard() {
+    const navigate = useNavigate();
+    const logout = () => {
+        document.cookie = "managerToken=;";
+        navigate('/login');
+    }
+
+    // take token
+    const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("managerToken="))
+        ?.split("=")[1];
+    axios.defaults.headers.common['Authorization'] = token;
+    
+    useEffect(() => {
+        if (!token) {
+            return navigate('/login');
+        }
+        (async()=>{
+            try {
+                await axios.post('/v2/api/user/check');
+            } catch (error) {
+                if(!error.response.data.success){
+                    navigate('/login');
+                }
+            }
+        })()
+    }, [navigate, token]);
+
     return (
         <>
         <nav className='navbar navbar-expand-lg bg-dark'>
@@ -23,7 +53,7 @@ function Dashboard() {
             >
                 <ul className='navbar-nav'>
                 <li className='nav-item'>
-                    <button type='button' className='btn btn-sm btn-light'>
+                    <button type='button' className='btn btn-sm btn-light' onClick={logout}>
                     Logout
                     </button>
                 </li>
@@ -59,7 +89,7 @@ function Dashboard() {
             </div>
             <div className='w-100'>
             {/* Products */}
-            <Outlet/>
+            { token && <Outlet /> }
             {/* Products end */}
             </div>
         </div>

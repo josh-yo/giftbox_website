@@ -3,16 +3,9 @@ import axios from "axios";
 function AdminProducts() {
 
     useEffect(() =>{
-        // take token
-        const token = document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("managerToken="))
-            ?.split("=")[1];
-
-        axios.defaults.headers.common['Authorization'] = token;
-
         (async() =>{
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
+            console.log(productRes);
         })();
     }, [])
     
