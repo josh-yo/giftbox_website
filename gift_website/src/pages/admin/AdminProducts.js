@@ -14,13 +14,16 @@ function AdminProducts() {
             backdrop: 'static',
         });
 
+        addProduct();
+    }, [])
+
+    const addProduct = async() => {
         (async() =>{
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products`);
-            console.log(productRes);
             setProducts(productRes.data.products);
             setPagination(productRes.data.pagination);
         })();
-    }, [])
+    }
 
     const openProductModal = () => {
         productModal.current.show();
@@ -31,7 +34,7 @@ function AdminProducts() {
     
     return (
         <div className='p-3'>
-        <ProductModal closeProductModal={closeProductModal}/>
+        <ProductModal closeProductModal={closeProductModal} addProduct={addProduct}/>
         <h3>Product List</h3>
         <hr />
         <div className='text-end'>

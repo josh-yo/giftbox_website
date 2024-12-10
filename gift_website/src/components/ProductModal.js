@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-function ProductModal({closeProductModal}) {
+function ProductModal({ closeProductModal, addProduct }) {
     const [productData, setProductData] = useState({
         "title": "",
         "category": "",
@@ -42,6 +42,8 @@ function ProductModal({closeProductModal}) {
                 data: productData,
             });
             console.log(result);
+            closeProductModal();
+            addProduct();
         } catch (error) {
             console.log(error);
         }
