@@ -73,7 +73,7 @@ function AdminProducts() {
                     <td>{product.category}</td>
                     <td>{product.title}</td>
                     <td>{product.price}</td>
-                    <td>{product.is_enabled ? 'Active' : 'Inactive'}</td>
+                    <td>{product.is_enabled ? 'Enabled' : 'Disabled'}</td>
                     <td>
                     <button 
                         type='button' 

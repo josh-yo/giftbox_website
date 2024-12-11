@@ -88,7 +88,7 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
             <div className='modal-content'>
               <div className='modal-header'>
                 <h1 className='modal-title fs-5' id='exampleModalLabel'>
-                    Create New Product
+                    { type === 'edit' ? `Edit Product – ${tempProduct.title} ` : 'Create New Product'}
                 </h1>
                 <button
                   type='button'
@@ -241,7 +241,7 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                             name='is_enabled'
                             className='form-check-input'
                             onChange={handleChange}
-                            value={productData.is_enabled}
+                            checked={productData.is_enabled}
                           />
                         </label>
                       </div>
