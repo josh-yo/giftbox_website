@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function ProductModal({ closeProductModal, addProduct }) {
+function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
     const [productData, setProductData] = useState({
         "title": "",
         "category": "",
@@ -13,6 +13,25 @@ function ProductModal({ closeProductModal, addProduct }) {
         "is_enabled": 1,
         "imageUrl": "",
     })
+
+    // Use the type variable to determine whether the modal is in create or edit mode
+    useEffect(() => {
+        if (type === 'create'){
+            setProductData({
+                "title": "",
+                "category": "",
+                "origin_price": '',
+                "price": '',
+                "unit": "",
+                "description": "",
+                "content": "",
+                "is_enabled": 1,
+                "imageUrl": "",
+            });
+        } else if (type === 'edit'){
+            setProductData(tempProduct);
+        }
+    }, [type, tempProduct])
 
     const handleChange = (e) => {
         console.log(e);
@@ -36,9 +55,17 @@ function ProductModal({ closeProductModal, addProduct }) {
         }
     }
 
+    // Determine API endpoint and method based on modal type ('create' or 'edit')
     const submit = async() =>{
         try {
-            const result = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`, {
+            let api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`;
+            let method = 'post'; // Default to POST for creating a new product
+            if (type === 'edit' ){
+                api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product/${tempProduct.id}`;
+                method = 'put'; // Use PUT for editing an existing product
+            }
+
+            const result = await axios[method](api, {
                 data: productData,
             });
             console.log(result);
@@ -98,10 +125,6 @@ function ProductModal({ closeProductModal, addProduct }) {
                     <img src='' alt='' className='img-fluid' />
                   </div>
                   <div className='col-sm-8'>
-                    <pre>
-                        {JSON.stringify(productData)}
-                    </pre>
-
                     <div className='form-group mb-2'>
                       <label className='w-100' htmlFor='title'>
                         Title

@@ -7,6 +7,9 @@ function AdminProducts() {
     const [products, setProducts] = useState([]);
     const [pagination, setPagination] = useState({});
 
+    const [type, setType] = useState('create');
+    const [tempProduct, setTempProduct] = useState({});
+
     const productModal = useRef(null);
 
     useEffect(() =>{
@@ -25,7 +28,10 @@ function AdminProducts() {
         })();
     }
 
-    const openProductModal = () => {
+    // Use the type variable to determine whether the modal is in create or edit mode
+    const openProductModal = (type, product) => {
+        setType(type);
+        setTempProduct(product);
         productModal.current.show();
     }
     const closeProductModal = () => {
@@ -34,11 +40,20 @@ function AdminProducts() {
     
     return (
         <div className='p-3'>
-        <ProductModal closeProductModal={closeProductModal} addProduct={addProduct}/>
+        <ProductModal 
+            closeProductModal={closeProductModal} 
+            addProduct={addProduct}
+            tempProduct={tempProduct}
+            type={type}
+        />
         <h3>Product List</h3>
         <hr />
         <div className='text-end'>
-            <button type='button' className='btn btn-primary btn-sm' onClick={openProductModal}>
+            <button 
+                type='button' 
+                className='btn btn-primary btn-sm' 
+                onClick={() => openProductModal('create', {})}
+            >
             Create New Product
             </button>
         </div>
@@ -60,7 +75,11 @@ function AdminProducts() {
                     <td>{product.price}</td>
                     <td>{product.is_enabled ? 'Active' : 'Inactive'}</td>
                     <td>
-                    <button type='button' className='btn btn-primary btn-sm'>
+                    <button 
+                        type='button' 
+                        className='btn btn-primary btn-sm'
+                        onClick={() => openProductModal('edit', product)}
+                    >
                         Edit
                     </button>
                     <button
