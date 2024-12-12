@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ProductModal from "../../components/ProductModal";
+import DeleteModal from "../../components/DeleteModal";
 import { Modal } from "bootstrap";
 
 function AdminProducts() {
@@ -11,9 +12,14 @@ function AdminProducts() {
     const [tempProduct, setTempProduct] = useState({});
 
     const productModal = useRef(null);
+    const deleteModal = useRef(null);
+
 
     useEffect(() =>{
         productModal.current = new Modal("#productModal", {
+            backdrop: 'static',
+        });
+        deleteModal.current = new Modal("#deleteModal", {
             backdrop: 'static',
         });
 
@@ -37,6 +43,26 @@ function AdminProducts() {
     const closeProductModal = () => {
         productModal.current.hide();
     }
+
+    // Delete products's modal
+    const openDeletetModal = (product) => {
+        setTempProduct(product);
+        deleteModal.current.show();
+    }
+    const closeDeletetModal = () => {
+        deleteModal.current.hide();
+    }
+    const deleteProduct = async(id) => {
+        try {
+            const result = await axios.delete (`/v2/api/${process.env.REACT_APP_API_PATH}/admin/product/${id}`);
+            if(result.data.success){
+                addProduct();
+                deleteModal.current.hide();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     return (
         <div className='p-3'>
@@ -45,6 +71,12 @@ function AdminProducts() {
             addProduct={addProduct}
             tempProduct={tempProduct}
             type={type}
+        />
+        <DeleteModal
+            close={closeDeletetModal}
+            text={tempProduct.title}
+            handleDelete={deleteProduct}
+            id={tempProduct.id}
         />
         <h3>Product List</h3>
         <hr />
@@ -85,6 +117,7 @@ function AdminProducts() {
                     <button
                         type='button'
                         className='btn btn-outline-danger btn-sm ms-2'
+                        onClick={()=>openDeletetModal(product)}
                     >
                         Delete
                     </button>
