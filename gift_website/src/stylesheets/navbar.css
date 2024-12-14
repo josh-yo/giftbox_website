@@ -1,0 +1,21 @@
+.navbar {
+    transition: background-color 0.3s ease;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-absolute {
+    position: absolute;
+    background-color: transparent!important;
+}
+
+.navbar.scrolled {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8)!important;
+}
+
+.navbar-fixed {
+    position: sticky;
+    background-color: rgba(0, 0, 0, 0.8)!important;
+  }
