@@ -28,7 +28,7 @@ function Navbar(){
 
     return(<>
 
-    <nav className={`navbar navbar-expand-md navbar-dark bg-dark ${
+    <nav className={`navbar navbar-expand-md navbar-dark bg-dark pt-3 pb-3 ${
         isHomePage
           ? isScrolled
             ? "scrolled"
@@ -38,7 +38,7 @@ function Navbar(){
         <div className="container-fluid d-flex align-items-center justify-content-between">
 
             {/* logo */}
-            <NavLink className="navbar-brand d-flex align-items-center mx-5" to="/">
+            <NavLink className="navbar-brand d-flex align-items-center mx-4 logo" to="/">
                 <img src={logo} alt="" width="30" height="24" className="d-inline-block align-text-top" />
             GIFT BOX
             </NavLink>
@@ -49,17 +49,21 @@ function Navbar(){
 
             <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <NavLink className="nav-item nav-link me-4" to="/">Home <span className="sr-only"></span></NavLink>
-                    <NavLink className="nav-item nav-link me-4" to="/about">About</NavLink>
-                    <NavLink className="nav-item nav-link me-4" to="/products">Product</NavLink>
-                    <NavLink className="nav-item nav-link me-4" to="/detail">Contact</NavLink>
+                    <NavLink className="nav-item nav-link home me-4" to="/">Home <span className="sr-only"></span></NavLink>
+                    <NavLink className="nav-item nav-link about me-4" to="/about">About</NavLink>
+                    <NavLink className="nav-item nav-link products me-4" to="/products">Product</NavLink>
+                    <NavLink className="nav-item nav-link detail me-4" to="/detail">Contact</NavLink>
+                </div>
+                {/* icon */}
+                <div className="d-flex align-items-center icon">
+                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
+                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink>
+                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-cart4 nav-icon" style={{color: 'white'}}></i></NavLink>
                 </div>
             </div>
 
-            {/* icon */}
-            <div className="d-flex align-items-center mx-5">
-                <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-cart4" style={{color: 'white'}}></i></NavLink>
-            </div>
+            {/* <div className="d-none d-md-block navbar-transparent"></div> */}
+            <div className="d-block d-md-none navbar-dark-bg"></div>
         </div>
     </nav>
     </>)
