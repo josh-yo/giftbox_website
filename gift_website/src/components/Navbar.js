@@ -40,7 +40,7 @@ function Navbar(){
             {/* logo */}
             <NavLink className="navbar-brand d-flex align-items-center mx-4 logo" to="/">
                 <img src={logo} alt="" width="30" height="24" className="d-inline-block align-text-top" />
-            GIFT BOX
+            <h1 className="h5">GIFT BOX</h1>
             </NavLink>
             
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

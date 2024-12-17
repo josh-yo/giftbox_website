@@ -1,4 +1,4 @@
-.footer-title {
+  .footer-title {
     font-weight: bold;
     margin-bottom: 1rem;
   }
@@ -29,6 +29,19 @@
     transform: scale(1.1);
   }
 
+  .contact-list .d-flex > a {
+    font-size: 23px;
+  }
+
+  @media (max-width:768px) {
+    .contact-list{
+      text-align: center!important;
+    }
+    .contact-list .d-flex {
+      justify-content: center;
+    }
+  }
+ 
   @media (max-width:768px) {
     .footer-title{
         padding-bottom: 1rem;
@@ -39,5 +52,3 @@
         padding-bottom: 10px;
     }
   }
-
-  
