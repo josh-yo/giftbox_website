@@ -1,6 +1,6 @@
 function Pagination({ pagination, changePage}){
     return(
-        <nav aria-label='Page navigation example'>
+        <nav aria-label='Page navigation' className="d-flex justify-content-center">
             <ul className='pagination'>
             <li className='page-item'>
                 <a 

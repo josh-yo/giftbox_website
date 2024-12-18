@@ -109,6 +109,8 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                           id='image'
                           placeholder='Please input image link'
                           className='form-control'
+                          onChange={handleChange}
+                          value={productData.imageUrl}
                         />
                       </label>
                     </div>
