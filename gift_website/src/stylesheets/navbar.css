@@ -21,6 +21,9 @@
     position: sticky;
     background-color: rgba(0, 0, 0, 0.8)!important;
 }
+.navbar:hover{
+    background-color: rgba(0, 0, 0, 0.8)!important;
+}
 .navbar-dark-bg {
     position: absolute;
     top: 0;
