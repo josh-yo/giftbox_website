@@ -1,5 +1,22 @@
-.productImage{
-    object-fit: cover;
-    width: 100%;
-    height: auto ;
+.card-title>a{
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    color: black;
+}
+
+.card-body{
+    background-color: antiquewhite;
+}
+.card-title{
+    font-size: 1.2em;
+}
+.card-price{
+    font-size: 0.8em;
+}
+
+.item-amount{
+    color: black;
 }

@@ -36,7 +36,21 @@ function Products(){
         {/* filter */}
         <div className="col-md-3">
           <div className="filter">
-            <h5>Filter</h5>
+            <h5 style={{textAlign: 'center'}}>Category</h5>
+            <ul className="list-group">
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Category1</span>
+                <span className="item-amount badge badge-primary badge-pill">14</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+              <span>Category2</span>
+                <span className="item-amount badge badge-primary badge-pill">2</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Category3</span>
+                <span className="item-amount badge badge-primary badge-pill">1</span>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -46,17 +60,20 @@ function Products(){
             {products.map((product) => {
               return(
 
-                <div className="col-6 col-md-4" key={product.id}>
+                <div className="col-6 col-md-3" key={product.id}>
                   <div className="card border-0 mb-4 position-relative position-relative" style={{ width: "100%" }}>
-                    <div className="productImageWrapper">
-                      <img src={product.imageUrl} className="card-img-top rounded-0 productImage img-fluid" alt={product.title}/>
+                    <div className="ratio ratio-1x1">
+                      <img src={product.imageUrl} className="card-img-top rounded-0 productImage" alt={product.title}/>
                     </div>
                     <a href="#" className="text-dark">
                       <i className="bi bi-heart position-absolute" style={{right: '16px', top: '16px'}}></i>
                     </a>
-                    <div className="card-body p-0">
-                      <h4 className="card-title mb-0 mt-3"><a href="#">{product.title}</a></h4>
+                    <div className="card-body p-3">
+                      <h2 className="card-title mb-0 mt-3"><a href="#">{product.title}</a></h2>
                       <p className="card-price text-muted mt-2">NT$ {product.price}</p>
+                      <div className="add_to_cart">
+                        <button type="button" className="btn btn-danger">Add to cart</button>
+                      </div>
                     </div>
                   </div>
                 </div>
