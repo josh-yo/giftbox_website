@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../../components/Pagination";
 import '../../stylesheets/products.css'
@@ -7,7 +8,7 @@ function Products(){
     const [products, setProducts] = useState([]);
     const [pagination, setPagination] = useState({});
 
-    const getProduct = async( page = 1) => {
+    const getProducts = async( page = 1) => {
       (async() =>{
           const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`);
           console.log(productRes);
@@ -17,7 +18,7 @@ function Products(){
     }
 
     useEffect(() => {
-      getProduct(1);
+      getProducts(1);
     }, [])
 
     return(<>
@@ -69,7 +70,8 @@ function Products(){
                       <i className="bi bi-heart position-absolute" style={{right: '16px', top: '16px'}}></i>
                     </a>
                     <div className="card-body p-3">
-                      <h2 className="card-title mb-0 mt-3"><a href="#">{product.title}</a></h2>
+                      <h2 className="card-title mb-0 mt-3"><Link to={`/product/${product.id}`}
+                      >{product.title}</Link></h2>
                       <p className="card-price text-muted mt-2">NT$ {product.price}</p>
                       <div className="add_to_cart">
                         <button type="button" className="btn btn-danger">Add to cart</button>
@@ -88,7 +90,7 @@ function Products(){
       </div>
 
       {/* pagiantion */}
-      <Pagination pagination={pagination} changePage={getProduct} />
+      <Pagination pagination={pagination} changePage={getProducts} />
      
     </div>
     </>

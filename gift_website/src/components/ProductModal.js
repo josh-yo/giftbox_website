@@ -12,6 +12,7 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
         "content": "",
         "is_enabled": 1,
         "imageUrl": "",
+        "imagesUrl": [],
     })
 
     // Use the type variable to determine whether the modal is in create or edit mode
@@ -27,14 +28,14 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                 "content": "",
                 "is_enabled": 1,
                 "imageUrl": "",
+                "imagesUrl": ["","","","",""]
             });
         } else if (type === 'edit'){
             setProductData(tempProduct);
         }
     }, [type, tempProduct])
 
-    const handleChange = (e) => {
-        console.log(e);
+    const handleChange = (e, index) => {
         const { name, value } = e.target;
         if(['price','origin_price'].includes(name)){
             setProductData({
@@ -46,6 +47,13 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                 ...productData,
                 [name]: +e.target.checked,
             })
+        }else if(name === 'imagesUrl'){
+          const updatedImagesUrl = [...productData.imagesUrl];
+          updatedImagesUrl[index] = value;
+          setProductData({
+              ...productData,
+              imagesUrl: updatedImagesUrl,
+          })
         }
         else{
             setProductData({
@@ -112,6 +120,18 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                           onChange={handleChange}
                           value={productData.imageUrl}
                         />
+                        {productData.imagesUrl.map((url, index) => (
+                            <label key={index} className="w-100">
+                                Image {index + 1} URL
+                                <input
+                                    type="text"
+                                    name="imagesUrl"
+                                    value={url}
+                                    className="form-control mb-2"
+                                    onChange={(e) => handleChange(e, index)}
+                                />
+                            </label>
+                        ))}
                       </label>
                     </div>
                     <div className='form-group mb-2'>
@@ -127,6 +147,7 @@ function ProductModal({ closeProductModal, addProduct, type, tempProduct }) {
                     <img src='' alt='' className='img-fluid' />
                   </div>
                   <div className='col-sm-8'>
+                  <pre>{JSON.stringify(tempProduct)}</pre>
                     <div className='form-group mb-2'>
                       <label className='w-100' htmlFor='title'>
                         Title
