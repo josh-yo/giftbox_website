@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import '../../stylesheets/productDetail.css'
 
 function ProductDetail(){
     const [product, setProduct] = useState({});
     const { id } = useParams(); // Get dynamic parameters from URL
-    console.log(id);
 
     const getProduct = async(id) => {
         (async() =>{
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`);
             setProduct(productRes.data.product);
-            console.log(productRes.data.product)
         })();
     }
 
@@ -23,28 +22,70 @@ function ProductDetail(){
     <div className="container mt-5">
       <div className="row align-items-center">
         <div className="col-md-7">
-          <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+          <div id="carouselExampleControls" className="carousel slide">
             <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src={product.imageUrl} className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" className="d-block w-100" alt="..." />
-              </div>
+              {/* Main photo */}
+              {product.imageUrl && (
+                <div key="0" className="carousel-item active">
+                  <img src={product.imageUrl} className="d-block w-100" alt="Main Image" />
+                </div>
+              )}
+
+              {/* Others photo */}
+              {product.imagesUrl?.map((url, index) => (
+                <div key={index+1} className="carousel-item">
+                  <img src={url} className="d-block w-100" alt={`Slide ${index + 1}`} />
+                </div>
+              ))}
+
+              {/* button */}
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span className="carousel-control-prev-icon"></span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span className="carousel-control-next-icon"></span>
+              </button>
             </div>
-            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="sr-only">Next</span>
-            </a>
+
+            <div className="mt-3 thumbnailGroup d-flex justify-content-center flex-wrap">
+              {/* Main photo */}
+              {product.imageUrl && (
+                <button
+                  key="0"
+                  className="carousel-button active"
+                  data-bs-target="#carouselExampleControls"
+                  data-bs-slide-to="0"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                >
+                  <img
+                    src={product.imageUrl}
+                    className="d-block w-100 shadow-1-strong"
+                    alt="Main Thumbnail"
+                  />
+                </button>
+              )}
+              {/* Others photo */}
+              {product.imagesUrl?.map((url, index) => (
+                <button 
+                  key={index+1}
+                  className={`carousel-button ${index === 0 && !product.imageUrl ? 'active' : ''}`}
+                  data-bs-target="#carouselExampleControls" 
+                  data-bs-slide-to={index + 1}
+                  aria-current="true" 
+                  aria-label={`Slide ${index + 2}`}
+                >
+                <img
+                  src={url}
+                  className="d-block w-100 shadow-1-strong"
+                  alt={`Thumbnail ${index + 1}`}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
+
         <div className="col-md-5">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-white px-0 mb-0 py-3">
