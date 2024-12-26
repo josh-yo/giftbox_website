@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import CategoryFilter from "../../components/CategoryFilter";
+import CartItem from "../../components/CartItem";
 import '../../stylesheets/productDetail.css'
 
 function ProductDetail(){
@@ -10,16 +11,25 @@ function ProductDetail(){
     const { id } = useParams(); // Get dynamic parameters from URL
     const { getCart } = useOutletContext();
 
+    // Fetch product details from API by ID
     const getProduct = async(id) => {
         (async() =>{
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`);
             setProduct(productRes.data.product);
         })();
     }
-
+    // Fetch product data when page loads or ID changes
     useEffect(() => {
         getProduct(id);
     }, [id])
+    // Increase product quantity by 1
+    const increaseQuantity = () => {
+      setCartQuantity((prev) => prev + 1);
+    };
+    // Decrease product quantity by 1 (Minimum is 1)
+    const decreaseQuantity = () => {
+      setCartQuantity((prev) => (prev === 1 ? prev : prev - 1));
+    };
 
     const addToCart = async() =>{
       const data = {
@@ -30,9 +40,9 @@ function ProductDetail(){
       }
       try {
         const result = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH}/cart`, data);
-        getCart();
+        getCart(); // Refresh cart data
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
 
@@ -125,23 +135,12 @@ function ProductDetail(){
             <div className="row align-items-center">
               <div className="col-6">
                 <div className="input-group my-3 bg-light rounded">
-                  <div className="input-group-prepend">
-                    <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon1"
-                    onClick={() => setCartQuantity((pre) => pre === 1 ? pre : pre - 1)}
-                    >
-                      <i className="bi bi-dash"></i>
-                    </button>
-                  </div>
-                  <input type="number" className="form-control border-0 text-center my-auto shadow-none bg-light" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" 
-                  value={cartQuantity} readOnly 
+                  <CartItem 
+                    cartQuantity={cartQuantity} 
+                    setCartQuantity={setCartQuantity}
+                    increaseQuantity={increaseQuantity}
+                    decreaseQuantity={decreaseQuantity}
                   />
-                  <div className="input-group-append">
-                    <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon2" 
-                    onClick={() => setCartQuantity((pre) => pre + 1)}
-                    >
-                      <i className="bi bi-plus"></i>
-                    </button>
-                  </div>
                 </div>
               </div>
               <div className="col-6">
@@ -154,11 +153,7 @@ function ProductDetail(){
             </div>
             </div>
           </div>
-
-
         </div>
-
-        
       </div>
 
 
@@ -255,3 +250,7 @@ function ProductDetail(){
 }
 
 export default ProductDetail;
+
+// Notes:
+// - Manages product details and quantity state.
+// - Sends quantity and product data to the API when adding to the cart.

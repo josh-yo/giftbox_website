@@ -23,7 +23,7 @@ function FrontLayout(){
     return(<>
     <Navbar cartData={cartData}/>
 
-    <Outlet context={{ getCart }}></Outlet>
+    <Outlet context={{ cartData, getCart }}></Outlet>
 
     <Footer/>
 
