@@ -5,7 +5,7 @@ import '../stylesheets/navbar.css'
 import { useState, useEffect } from 'react';
 
 
-function Navbar(){
+function Navbar({ cartData }){
     const [isScrolled, setIsScrolled] = useState(false);
 
     const location = useLocation();
@@ -56,9 +56,15 @@ function Navbar(){
                 </div>
                 {/* icon */}
                 <div className="d-flex align-items-center icon">
-                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
-                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink>
-                    <NavLink className="nav-item nav-link fs-3" to="/cart"><i className="bi bi-cart4 nav-icon" style={{color: 'white'}}></i></NavLink>
+                    <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
+                    <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink>
+                    
+                    <NavLink className="nav-item nav-link position-relative" to="/cart">
+                        <i className="bi bi-cart4 nav-icon" style={{color: 'white'}}></i>
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {cartData?.carts?.length}
+                        </span>
+                    </NavLink>
                 </div>
             </div>
 

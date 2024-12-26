@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import CategoryFilter from "../../components/CategoryFilter";
 import '../../stylesheets/productDetail.css'
 
 function ProductDetail(){
     const [product, setProduct] = useState({});
+    const [cartQuantity, setCartQuantity] = useState(1);
     const { id } = useParams(); // Get dynamic parameters from URL
+    const { getCart } = useOutletContext();
 
     const getProduct = async(id) => {
         (async() =>{
@@ -18,107 +21,147 @@ function ProductDetail(){
         getProduct(id);
     }, [id])
 
+    const addToCart = async() =>{
+      const data = {
+        data: {
+          product_id : product.id ,
+          qty: cartQuantity,
+        }
+      }
+      try {
+        const result = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH}/cart`, data);
+        getCart();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     return(<>
     <div className="container mt-5">
-      <div className="row align-items-center">
-        <div className="col-md-7">
-          <div id="carouselExampleControls" className="carousel slide">
-            <div className="carousel-inner">
-              {/* Main photo */}
-              {product.imageUrl && (
-                <div key="0" className="carousel-item active">
-                  <img src={product.imageUrl} className="d-block w-100" alt="Main Image" />
-                </div>
-              )}
+      <div className="row">
+        
+        {/* filter */}
+        <CategoryFilter/>
+        
+        <div className="col-md-9">
+          <div className="row">
 
-              {/* Others photo */}
-              {product.imagesUrl?.map((url, index) => (
-                <div key={index+1} className="carousel-item">
-                  <img src={url} className="d-block w-100" alt={`Slide ${index + 1}`} />
-                </div>
-              ))}
+            <div className="col-md-6">
+              <div id="carouselExampleControls" className="carousel slide">
+                <div className="carousel-inner">
+                  {/* Main photo */}
+                  {product.imageUrl && (
+                    <div key="0" className="carousel-item active">
+                      <img src={product.imageUrl} className="d-block w-100" alt="Main Image" />
+                    </div>
+                  )}
 
-              {/* button */}
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span className="carousel-control-prev-icon"></span>
-              </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span className="carousel-control-next-icon"></span>
-              </button>
-            </div>
+                  {/* Others photo */}
+                  {product.imagesUrl?.map((url, index) => (
+                    <div key={index+1} className="carousel-item">
+                      <img src={url} className="d-block w-100" alt={`Slide ${index + 1}`} />
+                    </div>
+                  ))}
 
-            <div className="mt-3 thumbnailGroup d-flex justify-content-center flex-wrap">
-              {/* Main photo */}
-              {product.imageUrl && (
-                <button
-                  key="0"
-                  className="carousel-button active"
-                  data-bs-target="#carouselExampleControls"
-                  data-bs-slide-to="0"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                >
-                  <img
-                    src={product.imageUrl}
-                    className="d-block w-100 shadow-1-strong"
-                    alt="Main Thumbnail"
-                  />
-                </button>
-              )}
-              {/* Others photo */}
-              {product.imagesUrl?.map((url, index) => (
-                <button 
-                  key={index+1}
-                  className={`carousel-button ${index === 0 && !product.imageUrl ? 'active' : ''}`}
-                  data-bs-target="#carouselExampleControls" 
-                  data-bs-slide-to={index + 1}
-                  aria-current="true" 
-                  aria-label={`Slide ${index + 2}`}
-                >
-                <img
-                  src={url}
-                  className="d-block w-100 shadow-1-strong"
-                  alt={`Thumbnail ${index + 1}`}
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-5">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb bg-white px-0 mb-0 py-3">
-              <li className="breadcrumb-item"><a className="text-muted" href="./index.html">Home</a></li>
-              <li className="breadcrumb-item"><a className="text-muted" href="./product.html">Product</a></li>
-              <li className="breadcrumb-item active" aria-current="page">Detail</li>
-            </ol>
-          </nav>
-          <h2 className="fw-bold h1 mb-1">{product.title}</h2>
-          <p className="mb-0 text-muted text-end"><del>NT${product.origin_price}</del></p>
-          <p className="h4 fw-bold text-end">NT${product.price}</p>
-          <div className="row align-items-center">
-            <div className="col-6">
-              <div className="input-group my-3 bg-light rounded">
-                <div className="input-group-prepend">
-                  <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon1">
-                    <i className="fas fa-minus"></i>
+                  {/* button */}
+                  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span className="carousel-control-prev-icon"></span>
+                  </button>
+                  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span className="carousel-control-next-icon"></span>
                   </button>
                 </div>
-                <input type="text" className="form-control border-0 text-center my-auto shadow-none bg-light" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                <div className="input-group-append">
-                  <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon2">
-                    <i className="fas fa-plus"></i>
-                  </button>
+
+                <div className="mt-3 thumbnailGroup d-flex justify-content-center flex-wrap">
+                  {/* Main photo */}
+                  {product.imageUrl && (
+                    <button
+                      key="0"
+                      className="carousel-button active"
+                      data-bs-target="#carouselExampleControls"
+                      data-bs-slide-to="0"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    >
+                      <img
+                        src={product.imageUrl}
+                        className="d-block w-100 shadow-1-strong"
+                        alt="Main Thumbnail"
+                      />
+                    </button>
+                  )}
+                  {/* Others photo */}
+                  {product.imagesUrl?.map((url, index) => (
+                    <button 
+                      key={index+1}
+                      className={`carousel-button ${index === 0 && !product.imageUrl ? 'active' : ''}`}
+                      data-bs-target="#carouselExampleControls" 
+                      data-bs-slide-to={index + 1}
+                      aria-current="true" 
+                      aria-label={`Slide ${index + 2}`}
+                    >
+                    <img
+                      src={url}
+                      className="d-block w-100 shadow-1-strong"
+                      alt={`Thumbnail ${index + 1}`}
+                      />
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
-            <div className="col-6">
-              <a href="./checkout.html" className="text-nowrap btn btn-dark w-100 py-2">Add to cart</a>
+
+            <div className="col-md-6">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb bg-white px-0 mb-0 py-3">
+                <li className="breadcrumb-item"><a className="text-muted" href="./index.html">Home</a></li>
+                <li className="breadcrumb-item"><a className="text-muted" href="./product.html">Product</a></li>
+                <li className="breadcrumb-item active" aria-current="page">Detail</li>
+              </ol>
+            </nav>
+            <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+            <p className="mb-0 text-muted text-end"><del>NT${product.origin_price}</del></p>
+            <p className="h4 fw-bold text-end">NT${product.price}</p>
+            <div className="row align-items-center">
+              <div className="col-6">
+                <div className="input-group my-3 bg-light rounded">
+                  <div className="input-group-prepend">
+                    <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon1"
+                    onClick={() => setCartQuantity((pre) => pre === 1 ? pre : pre - 1)}
+                    >
+                      <i className="bi bi-dash"></i>
+                    </button>
+                  </div>
+                  <input type="number" className="form-control border-0 text-center my-auto shadow-none bg-light" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" 
+                  value={cartQuantity} readOnly 
+                  />
+                  <div className="input-group-append">
+                    <button className="btn btn-outline-dark border-0 py-2" type="button" id="button-addon2" 
+                    onClick={() => setCartQuantity((pre) => pre + 1)}
+                    >
+                      <i className="bi bi-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="col-6">
+                <button type="button" href="./checkout.html" className="text-nowrap btn btn-dark w-100 py-2" 
+                onClick={() => addToCart()}  
+                >
+                  Add to cart  
+                </button>
+              </div>
+            </div>
             </div>
           </div>
+
+
         </div>
+
+        
       </div>
+
+
       <div className="row my-5">
         <div className="col-md-4">
           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>
