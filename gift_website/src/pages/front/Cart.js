@@ -1,6 +1,7 @@
     import { useOutletContext } from "react-router-dom";
     import axios from "axios";
     import CartItem from "../../components/CartItem";
+    import '../../stylesheets/cart.css';
 
     function Cart() {
         const { cartData, getCart } = useOutletContext();
@@ -33,60 +34,79 @@
             <div className='container'>
                 <div className='row justify-content-center'>
                     <div
-                    className='col-md-6 bg-white py-5'
-                    style={{minHeight: 'calc(100vh - 56px - 76px)'}}
+                        className='col-md-7 col-xl-6 bg-white py-5'
+                        style={{minHeight: 'calc(100vh - 56px - 76px)'}}
                     >
-                    <div className='d-flex justify-content-between'>
-                        <h2 className='mt-2'>Your order</h2>
-                    </div>
-                    { cartData?.carts?.map((item) => {
-                        return (
-                        <div className='d-flex mt-4 bg-light' key={item.id}>
-                            <img
-                            src={item.product.imageUrl}
-                            alt=''
-                            className='object-cover'
-                            style={{
-                                width: '120px',
-                            }}
-                            />
-                            <div className='w-100 p-3 position-relative'>
-                            <button
-                                type="button"
-                                className='position-absolute btn'
-                                style={{ top: '12px', right: '10px' }}
-                                onClick={() => removeCartItem(item.id)}
-                            >
-                                <i className='bi bi-x-lg'></i>
-                            </button>
-                            <p className='mb-0 fw-bold'>{item.product.title}</p>
-                            <p className='mb-1 text-muted' style={{ fontSize: '14px' }}>
-                                {item.product.content}
-                            </p>
-                            <div className='d-flex justify-content-between align-items-center w-100'>
-                                <div className='input-group w-50 align-items-center'>
-                                    <CartItem 
-                                        cartQuantity={item.qty} 
-                                        increaseQuantity={() => updateCartItem(item, item.qty + 1)}
-                                        decreaseQuantity={() => updateCartItem(item, item.qty - 1)}
-                                    />
-                                </div>
-                                <p className='mb-0 ms-auto'>AUD${item.final_total}</p>
-                            </div>
-                            </div>
+                        <div className='d-flex justify-content-between'>
+                            <h2 className='mt-2'>Your order</h2>
                         </div>
-                        );
-                    })}
-                    <div className='d-flex justify-content-between mt-4'>
-                        <p className='mb-0 h4 fw-bold'>Total</p>
-                        <p className='mb-0 h4 fw-bold'>AUD${cartData?.final_total}</p>
+
+                        { cartData?.carts?.map((item) => {
+                            return (
+                            <div className='d-flex mt-4 bg-light' key={item.id}>
+                                {/* photo */}
+                                <img
+                                    src={item.product.imageUrl}
+                                    alt=''
+                                    className='object-cover'
+                                    style={{
+                                        width: '120px',
+                                    }}
+                                />
+                                <div className='w-100 p-3 position-relative'>
+                                    <button
+                                        type="button"
+                                        className='position-absolute btn'
+                                        style={{ top: '12px', right: '10px' }}
+                                        onClick={() => removeCartItem(item.id)}
+                                    >
+                                        <i className='bi bi-x-lg'></i>
+                                    </button>
+                                    {/* price */}
+                                    <div className="d-flex align-items-center">
+                                        <p className='mb-1 text-muted fw-bold specialPrice' style={{ fontSize: '14px' }}>
+                                            ${item.product.price}
+                                        </p>
+                                        <small className='mb-1 text-muted originalPrice'>
+                                            $ {item.product.origin_price}
+                                        </small>
+                                    {/* product title */}
+                                    </div>
+                                    <p className='mb-0 fw-bold'>{item.product.title}</p>
+                                    {/* QTY Button */}
+                                    <div className='d-flex justify-content-between align-items-center w-100'>
+                                        <div className='input-group align-items-center QTYcontainer'>
+                                            <div>QTY：</div>
+                                            <CartItem 
+                                                cartQuantity={item.qty} 
+                                                increaseQuantity={() => updateCartItem(item, item.qty + 1)}
+                                                decreaseQuantity={() => updateCartItem(item, item.qty - 1)}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            );
+                        })}
                     </div>
-                    <a
-                        href='./checkout.html'
-                        className='btn btn-dark w-100 mt-4 rounded-0 py-3'
-                    >
-                        Confirm
-                    </a>
+
+                    <div className='col-md-5 col-xl-4 bg-white py-5'>
+                        <div className="orderInfo">
+                            <div className='d-flex justify-content-between mt-4'>
+                                <p className='mb-0 fw-bold'>Subtotal</p>
+                                <p className='mb-0 fw-bold'>AUD${cartData?.final_total}</p>
+                            </div>
+                            <div className='d-flex justify-content-between mt-4'>
+                                <p className='mb-0 fw-bold'>Shipping</p>
+                                <p className='mb-0 fw-bold'>FREE</p>
+                            </div>
+                            <a
+                                href='./checkout.html'
+                                className='btn btn-success w-100 mt-4 rounded-0 py-3'
+                            >
+                                Confirm
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

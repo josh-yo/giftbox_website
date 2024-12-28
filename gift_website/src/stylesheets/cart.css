@@ -1,0 +1,26 @@
+.orderInfo{
+    background-color: #d3d3d3!important;
+    padding: 2.5em;
+}
+.specialPrice{
+    color: #d01345!important;
+    letter-spacing: .1rem;
+    margin-right: .8rem;
+}
+.originalPrice{
+    text-decoration: line-through;
+    font-size: .8rem;
+}
+.QTYcontainer{
+    width: 60%!important;
+}
+@media (max-width: 992px) {
+    .QTYcontainer{
+        width: 70%!important;
+    }
+}
+@media (max-width: 400px) {
+    .QTYcontainer{
+        width: 100%!important;
+    }
+}
