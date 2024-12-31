@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Routes, Route } from 'react-router-dom';
@@ -16,12 +16,13 @@ import ProductDetail from './pages/front/ProductDetail';
 import Cart from './pages/front/Cart';
 
 function App() {
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
     console.log(process.env.REACT_APP_API_URL, process.env.REACT_APP_API_PATH);
     (async () => {
       const result = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/products/all`);
-      console.log(result);
+      setAllProducts(result.data.products);
     })()
   }, [])
 
@@ -30,7 +31,7 @@ function App() {
       <Routes>
         <Route path='/' element={<FrontLayout/>}>
           <Route path='' element={<Home/>}></Route>
-          <Route path='products' element={<Products/>}></Route>
+          <Route path='products' element={<Products allproducts={allProducts}/>}></Route>
           <Route path='product/:id' element={<ProductDetail/>}></Route>
           <Route path='cart' element={<Cart />}></Route>
         </Route>

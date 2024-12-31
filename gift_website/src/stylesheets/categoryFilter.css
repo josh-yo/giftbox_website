@@ -1,0 +1,30 @@
+.filter{
+  border-radius: 8px;
+  border: 2px solid gray;
+  padding: 20px;
+  box-shadow: 6px 0 12px rgba(0, 0, 0, 0.2);
+}
+.filter-title {
+    font-weight: bold;
+    padding: 10px 13px;
+    letter-spacing: 1px;
+}
+.list-group{
+    border: none;
+}
+.list-group-item{
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 1px solid #2c3240;
+    cursor: pointer;
+}
+.list-group-item:hover .item-amount,
+.list-group-item:hover span {
+    color: rgba(230, 57, 70, 0.9);
+}
+.list-group-item:last-child {
+    border-bottom: none; /* Delete the last border line */
+}
+.item-amount{
+    font-size: 0.9rem;
+}

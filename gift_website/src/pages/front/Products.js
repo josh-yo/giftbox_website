@@ -6,7 +6,7 @@ import CategoryFilter from "../../components/CategoryFilter";
 import HoverImage from "../../components/HoverImage";
 import '../../stylesheets/products.css'
 
-function Products(){
+function Products({ allproducts }){
     const [products, setProducts] = useState([]);
     const [pagination, setPagination] = useState({});
 
@@ -27,7 +27,7 @@ function Products(){
     <div className="container mt-md-5 mt-3 mb-7">
       <div className="row">
         {/* filter */}
-        <CategoryFilter/>
+        <CategoryFilter allproducts={allproducts}/>
 
         {/* products */}
         <div className="col-md-9">

@@ -1,21 +1,29 @@
-function CategoryFilter(){
+import '../stylesheets/categoryFilter.css';
+
+function CategoryFilter({allproducts}){
+    // Use Set to get unique categories
+    const uniqueCategories = [...new Set(allproducts.map(product => product.category))];
+
     return (<>
         <div className="col-md-3">
           <div className="filter">
-            <h5 style={{textAlign: 'center'}}>Category</h5>
+            <h5 className="filter-title mb-3">FILTER</h5>
             <ul className="list-group">
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Category1</span>
-                <span className="item-amount badge badge-primary badge-pill">14</span>
+                <span>All</span>
+                <span className="item-amount badge badge-primary badge-pill">
+                  {`( ${allproducts.length} )`}
+                </span>
               </li>
-              <li className="list-group-item d-flex justify-content-between align-items-center">
-              <span>Category2</span>
-                <span className="item-amount badge badge-primary badge-pill">2</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Category3</span>
-                <span className="item-amount badge badge-primary badge-pill">1</span>
-              </li>
+
+              {uniqueCategories.map((category, index) => (
+                <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                  <span>{category}</span>
+                  <span className="item-amount badge badge-primary badge-pill">
+                    ( {allproducts.filter(p => p.category === category).length} )
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
