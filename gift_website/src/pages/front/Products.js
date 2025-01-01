@@ -9,6 +9,32 @@ import '../../stylesheets/products.css'
 function Products({ allproducts }){
     const [products, setProducts] = useState([]);
     const [pagination, setPagination] = useState({});
+    // Track the currently selected category
+    const [selectedCategory, setSelectedCategory] = useState('');
+
+    useEffect(() => {
+      getProducts(1);
+    }, [])
+
+    // Handle category selection
+    const handleCategorySelect = (category) => {
+      setSelectedCategory(category); // Update selected category
+      if (category === 'All') {
+          getProducts(1); // If ALL is selected, reset to the first page
+      }
+    };
+
+    // Filter products by category
+    let filteredProducts = [];
+    if (selectedCategory === '') {
+        // Default & All : Use paging API to load products
+        filteredProducts = products;
+    } else if (selectedCategory === 'All') {
+        filteredProducts = products;
+    } else {
+        // Other categories: filter products from allproducts
+        filteredProducts = allproducts.filter(product => product.category === selectedCategory);
+    }
 
     const getProducts = async( page = 1) => {
       (async() =>{
@@ -19,22 +45,22 @@ function Products({ allproducts }){
       })();
     }
 
-    useEffect(() => {
-      getProducts(1);
-    }, [])
-
     return(<>
-    <div className="container mt-md-5 mt-3 mb-7">
+    <div className="container mt-5 mb-7 p-0">
       <div className="row">
         {/* filter */}
-        <CategoryFilter allproducts={allproducts}/>
+        <CategoryFilter 
+          allproducts={allproducts}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={handleCategorySelect}
+        />
 
         {/* products */}
-        <div className="col-md-9">
+        <div className="col-11 col-sm-12 col-md-8 col-lg-9 products-container">
           <div className="row">
-            {products.map((product) => {
+            {filteredProducts.map((product) => {
               return(
-                <div className="product-list col-6 col-md-4 col-xl-4" key={product.id}>
+                <div className="product-list col-6 col-lg-4" key={product.id}>
                   <div className="product-card card mb-4 position-relative position-relative" style={{ width: "100%" }}>
                     {/* image */}
                     <HoverImage product={product}/>
@@ -75,9 +101,10 @@ function Products({ allproducts }){
           </div>
         </div>
       </div>
-      {/* pagiantion */}
-      <Pagination pagination={pagination} changePage={getProducts} />
-     
+      {/* Pagiantion：Only displayed when no category is selected or "All" is selected */}
+      {selectedCategory === '' || selectedCategory === 'All' ? (
+        <Pagination pagination={pagination} changePage={getProducts} />
+      ) : null}
     </div>
     </>
     )

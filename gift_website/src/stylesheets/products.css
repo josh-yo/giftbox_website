@@ -66,3 +66,9 @@
     transform: scale(1.1);
     opacity: 0.9;
 }
+@media (max-width: 576px){
+    .products-container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
