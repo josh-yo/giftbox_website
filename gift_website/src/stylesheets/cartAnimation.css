@@ -1,0 +1,5 @@
+.flying-animation {
+    transition: transform 1s ease-in-out, width 1s ease-in-out, height 1s ease-in-out, opacity 1s ease-in-out;
+    pointer-events: none; /* prevent click event */
+    border-radius: 8px;
+}

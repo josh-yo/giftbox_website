@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 function FrontLayout(){
     const [cartData, setCartData] = useState({});
+    const cartIconRef = useRef(null);
 
     const getCart = async() => {
         try {
@@ -21,9 +22,9 @@ function FrontLayout(){
     }, []);
 
     return(<>
-    <Navbar cartData={cartData}/>
+    <Navbar cartData={cartData} cartIconRef={cartIconRef}/>
 
-    <Outlet context={{ cartData, getCart }}></Outlet>
+    <Outlet context={{ cartData, getCart, cartIconRef }}></Outlet>
 
     <Footer/>
 

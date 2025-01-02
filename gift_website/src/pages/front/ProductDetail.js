@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import CartItem from "../../components/CartItem";
+import CartAnimation from "../../components/CartAnimation";
 import '../../stylesheets/productDetail.css'
 
 function ProductDetail(){
     const [product, setProduct] = useState({});
     const [cartQuantity, setCartQuantity] = useState(1);
     const { id } = useParams(); // Get dynamic parameters from URL
-    const { getCart } = useOutletContext();
+    const { getCart, cartIconRef  } = useOutletContext();
+
+    // Cart Animation Refs
+    const [triggerAnimation, setTriggerAnimation] = useState(null);
+    const activeImageRef = useRef(null);
+    const productRef = useRef(null);
 
     // Fetch product details from API by ID
     const getProduct = async(id) => {
@@ -41,6 +47,25 @@ function ProductDetail(){
       try {
         const result = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH}/cart`, data);
         getCart(); // Refresh cart data
+
+        // Get the active image element
+        const activeImage = document.querySelector('.carousel-item.active img');
+        if (!activeImage) {
+          console.error('Cannot find active image element');
+          return;
+        }
+
+        // ✅ Set the trigger animation state
+        setTriggerAnimation({
+          imageUrl: activeImage.src,
+          rect: activeImage.getBoundingClientRect(),
+        });
+
+        // ✅ Clear the trigger animation state after 1.5 seconds
+        setTimeout(() => {
+          setTriggerAnimation(null);
+        }, 1500);
+
         console.log(product);
       } catch (error) {
         console.log(error)
@@ -71,7 +96,7 @@ function ProductDetail(){
                   {/* Main photo */}
                   {product.imageUrl && (
                     <div key="0" className="carousel-item active">
-                      <img src={product.imageUrl} className="d-block w-100" alt="Main Image" />
+                      <img src={product.imageUrl} ref={activeImageRef} className="d-block w-100" alt="Main Image"/>
                     </div>
                   )}
                   {/* Others photo */}
@@ -157,6 +182,16 @@ function ProductDetail(){
               >
                 Add to cart  
               </button>
+           
+              {triggerAnimation && (
+                <CartAnimation 
+                  product={product} 
+                  cartIconRef={cartIconRef} 
+                  productRect={triggerAnimation.rect}
+                  currentImageUrl={triggerAnimation.imageUrl}
+                />
+              )}
+          
               {/* Information Accordion */}
               <div className="container productContainer" id="productAccordion">
                   <div className="row">
@@ -187,22 +222,20 @@ function ProductDetail(){
                               <span className="bi bi-chevron-down toggle-icon accordionButton"></span>
                           </h5>
                           <div className="product-list list-unstyled collapse" id="collapse3" aria-labelledby="headingOne">
-                            <p> 
-                              <p><span className="fw-bold">1️⃣Check Your Order： </span>Verify your items upon arrival to ensure everything is correct.</p>
-                              <p><span className="fw-bold">2️⃣Keep Packaging： </span>Keep all original packaging and documents until you're happy with your order.</p>
-                              <p><span className="fw-bold">3️⃣Report Issues Quickly： </span>Contact us promptly if there are any problems with your items.</p>
-                              <p><span className="fw-bold">4️⃣Proof of Purchase： </span>Keep your invoice or order reference for quick assistance.</p> 
-                            </p>
+                            <p><span className="fw-bold">1️⃣Check Your Order： </span>Verify your items upon arrival to ensure everything is correct.</p>
+                            <p><span className="fw-bold">2️⃣Keep Packaging： </span>Keep all original packaging and documents until you're happy with your order.</p>
+                            <p><span className="fw-bold">3️⃣Report Issues Quickly： </span>Contact us promptly if there are any problems with your items.</p>
+                            <p><span className="fw-bold">4️⃣Proof of Purchase： </span>Keep your invoice or order reference for quick assistance.</p> 
                           </div>
                       </div>
                   </div>
               </div>
               {/* Donation */}
-              <div class="thank-you-box">
-                <div class="thank-you-icon">😊</div>
+              <div className="thank-you-box">
+                <div className="thank-you-icon">😊</div>
                 <div>
-                  <p class="thank-you-title"><strong>Thanks for shopping with us!</strong></p>
-                  <p class="thank-you-text">
+                  <p className="thank-you-title"><strong>Thanks for shopping with us!</strong></p>
+                  <p className="thank-you-text">
                     We donate 1.5% of our profits to support children's education, health, and well-being, helping create a brighter future for every child.
                   </p>
                 </div>
@@ -214,7 +247,7 @@ function ProductDetail(){
       </div>
       
       {/* More product recommendations */}
-      <h3 className="fw-bold text-center mt-4">You might also like!</h3>
+      <h3 className="fw-bold text-center mt-4 nav-title" style={{textUnderlineOffset:"10px"}}>You might also like!</h3>
       <div className="swiper-container mt-4 mb-5">
         <div className="swiper-wrapper">
           

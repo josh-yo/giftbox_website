@@ -5,7 +5,7 @@ import '../stylesheets/navbar.css'
 import { useState, useEffect } from 'react';
 
 
-function Navbar({ cartData }){
+function Navbar({ cartData, cartIconRef }){
     const [isScrolled, setIsScrolled] = useState(false);
 
     const location = useLocation();
@@ -60,7 +60,7 @@ function Navbar({ cartData }){
                     <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink>
                     
                     <NavLink className="nav-item nav-link position-relative" to="/cart">
-                        <i className="bi bi-cart4 nav-icon" style={{color: 'white'}}></i>
+                        <i className="bi bi-cart4 nav-icon" style={{color: 'white'}} ref={cartIconRef}></i>
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {cartData?.carts?.length}
                         </span>
