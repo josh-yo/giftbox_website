@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
+import { addToCart } from "../../components/AddToCart";
 import axios from "axios";
 import Pagination from "../../components/Pagination";
 import CategoryFilter from "../../components/CategoryFilter";
 import HoverImage from "../../components/HoverImage";
+import CartAnimation from "../../components/CartAnimation";
 import '../../stylesheets/products.css'
 
 function Products({ allproducts }){
@@ -12,9 +14,34 @@ function Products({ allproducts }){
     // Track the currently selected category
     const [selectedCategory, setSelectedCategory] = useState('');
 
+    const { getCart, cartIconRef  } = useOutletContext();
+    const [triggerAnimation, setTriggerAnimation] = useState(null);
+
+    const handleAddToCart = ( product, isMobile ) => {
+      const productSelector = `[data-product-id="${product.id}"] img`;
+      const productImage = document.querySelector(productSelector);
+    
+      if (productImage) {
+        const productRect = productImage.getBoundingClientRect();
+        const currentImageUrl = productImage.src;
+    
+        addToCart(
+          product.id,
+          1,
+          getCart,
+          !isMobile ? setTriggerAnimation : null,
+          productSelector,
+          product.title,
+          isMobile
+        );
+      } else {
+        console.warn('❌ Failed to find product image with selector:', productSelector);
+      }
+    };
+  
     useEffect(() => {
       getProducts(1);
-    }, [])
+    }, []);
 
     // Handle category selection
     const handleCategorySelect = (category) => {
@@ -89,10 +116,22 @@ function Products({ allproducts }){
                       </div>
 
                       <div className="add_to_cart">
-                        <button type="button" className="btn btn-success">
+                        <button type="button" className="btn btn-success d-none d-md-block" onClick={() => handleAddToCart(product, false)}>
                           <i className="bi bi-cart4"></i>
-                          Add to cart</button>
+                          Add to cart
+                        </button>
+                        <button type="button" className="btn btn-success d-block d-md-none" onClick={() => handleAddToCart(product, true)}>
+                          <i className="bi bi-cart4"></i>
+                          Add to cart
+                        </button>
                       </div>
+                      {triggerAnimation && (
+                        <CartAnimation
+                          cartIconRef={cartIconRef}
+                          productRect={triggerAnimation?.rect}
+                          currentImageUrl={triggerAnimation?.imageUrl}
+                        />
+                      )}         
                     </div>
                   </div>
                 </div>

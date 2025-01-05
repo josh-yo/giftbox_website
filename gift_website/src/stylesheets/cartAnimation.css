@@ -1,5 +1,16 @@
 .flying-animation {
-    transition: transform 1s ease-in-out, width 1s ease-in-out, height 1s ease-in-out, opacity 1s ease-in-out;
+    transition: transform 1.5s cubic-bezier(.25,.75,.5,1.25), 
+                opacity 1.5s ease-in-out,
+                width 1.5s ease-in-out, 
+                height 1.5s ease-in-out; 
     pointer-events: none; /* prevent click event */
     border-radius: 8px;
+    z-index: 9999;
+}
+.toast-product-title{
+    font-weight: bold;
+}
+.Toastify__toast{
+    letter-spacing: 0.5px;
+    word-spacing: 0.2rem;
 }

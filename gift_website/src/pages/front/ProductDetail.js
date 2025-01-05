@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { useOutletContext, useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useOutletContext, useParams, NavLink } from "react-router-dom";
+import { addToCart } from "../../components/AddToCart";
 import axios from "axios";
 import CartItem from "../../components/CartItem";
 import CartAnimation from "../../components/CartAnimation";
@@ -37,40 +37,16 @@ function ProductDetail(){
       setCartQuantity((prev) => (prev === 1 ? prev : prev - 1));
     };
 
-    const addToCart = async() =>{
-      const data = {
-        data: {
-          product_id : product.id ,
-          qty: cartQuantity,
-        }
-      }
-      try {
-        const result = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH}/cart`, data);
-        getCart(); // Refresh cart data
-
-        // Get the active image element
-        const activeImage = document.querySelector('.carousel-item.active img');
-        if (!activeImage) {
-          console.error('Cannot find active image element');
-          return;
-        }
-
-        // ✅ Set the trigger animation state
-        setTriggerAnimation({
-          imageUrl: activeImage.src,
-          rect: activeImage.getBoundingClientRect(),
-        });
-
-        // ✅ Clear the trigger animation state after 1.5 seconds
-        setTimeout(() => {
-          setTriggerAnimation(null);
-        }, 1500);
-
-        console.log(product);
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    const handleAddToCart = ( isMobile ) => {
+      addToCart(
+        product.id, 
+        cartQuantity, 
+        getCart, 
+        !isMobile ? setTriggerAnimation : null,
+        '.carousel-item.active img', 
+        product.title,
+        isMobile);
+    };
 
     return(<>
     <div className="container mt-5">
@@ -177,15 +153,17 @@ function ProductDetail(){
                 />
               </div>
               {/* Add to cart button */}
-              <button type="button" href="./checkout.html" className="text-nowrap btn btn-success w-100 py-2" 
-              onClick={() => addToCart()}  
-              >
+              <button type="button" href="./checkout.html" className="text-nowrap btn btn-success w-100 py-2 d-none d-md-block" 
+              onClick={() => handleAddToCart(false)}>
+                Add to cart  
+              </button>
+              <button type="button" href="./checkout.html" className="text-nowrap btn btn-success w-100 py-2 d-block d-md-none" 
+              onClick={() => handleAddToCart(true)}>
                 Add to cart  
               </button>
            
               {triggerAnimation && (
                 <CartAnimation 
-                  product={product} 
                   cartIconRef={cartIconRef} 
                   productRect={triggerAnimation.rect}
                   currentImageUrl={triggerAnimation.imageUrl}

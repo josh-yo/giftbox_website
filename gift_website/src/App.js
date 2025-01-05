@@ -15,6 +15,9 @@ import Products from './pages/front/Products';
 import ProductDetail from './pages/front/ProductDetail';
 import Cart from './pages/front/Cart';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [allProducts, setAllProducts] = useState([]);
 
@@ -40,6 +43,7 @@ function App() {
           <Route path="products" element={<AdminProducts/>}></Route> 
         </Route>
       </Routes>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }
