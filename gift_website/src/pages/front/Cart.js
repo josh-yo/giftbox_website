@@ -1,5 +1,6 @@
     import { useOutletContext, Link } from "react-router-dom";
     import { useEffect } from "react";
+    import { ToastContainer, toast } from 'react-toastify';
     import axios from "axios";
     import CartItem from "../../components/CartItem";
     import '../../stylesheets/cart.css';
@@ -26,6 +27,15 @@
             try {
                 const result = await axios.put(`/v2/api/${process.env.REACT_APP_API_PATH}/cart/${item.id}`, data);
                 getCart();
+                toast.success(
+                    <>
+                      <span className="toast-product-title">{item.product.title} quantity updated!</span>
+                    </>,
+                  {
+                    position: 'top-center',
+                    autoClose: 2800,
+                });
+
             } catch (error) {
                 console.log(error);
             }
