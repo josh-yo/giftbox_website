@@ -1,4 +1,5 @@
-    import { useOutletContext } from "react-router-dom";
+    import { useOutletContext, Link } from "react-router-dom";
+    import { useEffect } from "react";
     import axios from "axios";
     import CartItem from "../../components/CartItem";
     import '../../stylesheets/cart.css';
@@ -45,14 +46,14 @@
                             return (
                             <div className='d-flex mt-4 bg-light' key={item.id}>
                                 {/* photo */}
-                                <img
-                                    src={item.product.imageUrl}
-                                    alt=''
-                                    className='object-cover'
-                                    style={{
-                                        width: '120px',
-                                    }}
-                                />
+                                <Link to={`/product/${item.product_id}`} className="cart-item">
+                                    <img
+                                        src={item.product.imageUrl}
+                                        alt=''
+                                        className='object-cover'
+                                    />
+                                </Link>
+                                
                                 <div className='w-100 p-3 position-relative'>
                                     <button
                                         type="button"
@@ -72,7 +73,9 @@
                                         </small>
                                     {/* product title */}
                                     </div>
-                                    <p className='mb-0 fw-bold'>{item.product.title}</p>
+                                    <Link to={`/product/${item.product_id}`} className="cart-item">
+                                        <p className='mb-0 fw-bold'>{item.product.title}</p>
+                                    </Link>
                                     {/* QTY Button */}
                                     <div className='d-flex justify-content-between align-items-center w-100'>
                                         <div className='input-group align-items-center QTYcontainer'>

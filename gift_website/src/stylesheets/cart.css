@@ -24,3 +24,12 @@
         width: 100%!important;
     }
 }
+.cart-item {
+    width: 50%;
+    text-decoration: none;
+    color: inherit;
+}
+.cart-item img{
+    width: 100%;
+    height: auto;
+}
