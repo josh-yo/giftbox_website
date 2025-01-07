@@ -37,8 +37,8 @@
 .thumbnailGroup{
     align-items: center;
 }
-.carousel-item img {
-    width: 100%;
+.detail-carousel-item img {
+    width: 100%!important;
     height: 400px;
     object-fit: cover;
     object-position: center;

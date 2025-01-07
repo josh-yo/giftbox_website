@@ -4,9 +4,10 @@ import { addToCart } from "../../components/AddToCart";
 import axios from "axios";
 import CartItem from "../../components/CartItem";
 import CartAnimation from "../../components/CartAnimation";
+import RecommendedProducts from "../../components/RecommendedProducts";
 import '../../stylesheets/productDetail.css'
 
-function ProductDetail(){
+function ProductDetail({ allproducts }){
     const [product, setProduct] = useState({});
     const [cartQuantity, setCartQuantity] = useState(1);
     const { id } = useParams(); // Get dynamic parameters from URL
@@ -71,13 +72,13 @@ function ProductDetail(){
                 <div className="carousel-inner">
                   {/* Main photo */}
                   {product.imageUrl && (
-                    <div key="0" className="carousel-item active">
+                    <div key="0" className="carousel-item active detail-carousel-item ">
                       <img src={product.imageUrl} ref={activeImageRef} className="d-block w-100" alt="Main Image"/>
                     </div>
                   )}
                   {/* Others photo */}
                   {product.imagesUrl?.filter(url => url.trim() !== "").map((url, index) => (
-                    <div key={index+1} className="carousel-item">
+                    <div key={index+1} className="carousel-item detail-carousel-item ">
                       <img src={url} className="d-block w-100" alt={`Slide ${index + 1}`} />
                     </div>
                   ))}
@@ -225,24 +226,7 @@ function ProductDetail(){
       </div>
       
       {/* More product recommendations */}
-      <h3 className="fw-bold text-center mt-4 nav-title" style={{textUnderlineOffset:"10px"}}>You might also like!</h3>
-      <div className="swiper-container mt-4 mb-5">
-        <div className="swiper-wrapper">
-          
-          <div className="swiper-slide">
-            <div className="card border-0 mb-4 position-relative position-relative">
-              <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" className="card-img-top rounded-0" alt="..." />
-              <a href="#" className="text-dark">
-              </a>
-              <div className="card-body p-0">
-                <h4 className="mb-0 mt-3"><a href="#">Lorem ipsum</a></h4>
-                <p className="card-text mb-0">NT$1,080 <span className="text-muted "><del>NT$1,200</del></span></p>
-                <p className="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <RecommendedProducts allproducts={allproducts} product={product} />
     </div>
     </>)
 }
