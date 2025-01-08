@@ -1,4 +1,4 @@
-function Pagination({ pagination, changePage}){
+function Pagination({ pagination, changePage, scrollNextPage}){
     return(
         <nav aria-label='Page navigation' className="d-flex justify-content-center">
             <ul className='pagination'>
@@ -10,6 +10,7 @@ function Pagination({ pagination, changePage}){
                         onClick={(e)=>{
                         e.preventDefault();
                         changePage(pagination.current_page - 1);
+                        scrollNextPage();
                     }}
                 >
                 <span aria-hidden='true'>&laquo;</span>
@@ -22,6 +23,7 @@ function Pagination({ pagination, changePage}){
                     onClick={(e)=>{
                         e.preventDefault();
                         changePage(i+1);
+                        scrollNextPage();
                     }}    
                 >
                     {i + 1}

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
@@ -17,6 +17,23 @@ function FrontLayout(){
         }
     }
 
+    // Scroll to top on page change
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        });
+    }, [location.pathname]);
+
+    // Scroll to top when pagination changes
+    const scrollNextPage = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        });
+    };
+
     useEffect(() => {
         getCart();
     }, []);
@@ -24,7 +41,7 @@ function FrontLayout(){
     return(<>
     <Navbar cartData={cartData} cartIconRef={cartIconRef}/>
 
-    <Outlet context={{ cartData, getCart, cartIconRef }}></Outlet>
+    <Outlet context={{ cartData, getCart, cartIconRef, scrollNextPage }}></Outlet>
 
     <Footer/>
 

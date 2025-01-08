@@ -14,7 +14,7 @@ function Products({ allproducts }){
     // Track the currently selected category
     const [selectedCategory, setSelectedCategory] = useState('');
 
-    const { getCart, cartIconRef  } = useOutletContext();
+    const { getCart, cartIconRef, scrollNextPage } = useOutletContext();
     const [triggerAnimation, setTriggerAnimation] = useState(null);
 
     const handleAddToCart = ( product, isMobile ) => {
@@ -142,7 +142,7 @@ function Products({ allproducts }){
       </div>
       {/* Pagiantion：Only displayed when no category is selected or "All" is selected */}
       {selectedCategory === '' || selectedCategory === 'All' ? (
-        <Pagination pagination={pagination} changePage={getProducts} />
+        <Pagination pagination={pagination} changePage={getProducts} scrollNextPage={scrollNextPage} />
       ) : null}
     </div>
     </>
