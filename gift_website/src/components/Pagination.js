@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+
 function Pagination({ pagination, changePage, scrollNextPage}){
+    const isBackend = window.location.hash.includes('/admin');
+
     return(
         <nav aria-label='Page navigation' className="d-flex justify-content-center">
             <ul className='pagination'>
@@ -10,7 +14,9 @@ function Pagination({ pagination, changePage, scrollNextPage}){
                         onClick={(e)=>{
                         e.preventDefault();
                         changePage(pagination.current_page - 1);
-                        scrollNextPage();
+                        if (!isBackend) {
+                            scrollNextPage();
+                        }
                     }}
                 >
                 <span aria-hidden='true'>&laquo;</span>
@@ -23,7 +29,9 @@ function Pagination({ pagination, changePage, scrollNextPage}){
                     onClick={(e)=>{
                         e.preventDefault();
                         changePage(i+1);
-                        scrollNextPage();
+                        if (!isBackend) {
+                            scrollNextPage();
+                        }
                     }}    
                 >
                     {i + 1}
