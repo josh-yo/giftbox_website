@@ -28,13 +28,13 @@ function RecommendedProducts({ allproducts, product }) {
 
     return(<>
         <h3 className="fw-bold text-center mt-4 mb-5 nav-title" style={{textUnderlineOffset:"10px"}}>You might also like!</h3>
-        <div id="recommendedCarousel" className="carousel slide mb-5">
+        <div id="recommendedCarousel" className="carousel slide mb-4">
             <div className="carousel-inner">
 
                 {/* First Group */}
                 <div className="container carousel-item active">
                     <div className="row">
-                        <div className="col-8 mx-auto">
+                        <div className="col-10 mx-auto">
                             <div className="row">
                                 {recommendedProducts1.map((product,index) => {
                                     return(
