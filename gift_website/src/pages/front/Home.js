@@ -1,115 +1,113 @@
+import { useState } from "react";
+import { Link, useOutletContext } from "react-router-dom";
+import { addToCart } from "../../components/AddToCart";
 import fvVideo from './fv_video.mp4'
-function Home(){
+import HoverImage from "../../components/HoverImage";
+import CartAnimation from "../../components/CartAnimation";
+import '../../stylesheets/home.css'
+
+function Home({ allproducts }) {
+    const topSalesProducts = [allproducts[0], allproducts[3], allproducts[6]];
+    const { getCart, cartIconRef } = useOutletContext();
+    const [triggerAnimation, setTriggerAnimation] = useState(null);
+
+    const handleAddToCart = ( product, isMobile ) => {
+      const productSelector = `[data-product-id="${product.id}"] img`;
+      const productImage = document.querySelector(productSelector);
+      
+      if (productImage) {
+        const productRect = productImage.getBoundingClientRect();
+        const currentImageUrl = productImage.src;
+    
+        addToCart(
+          product.id,
+          1,
+          getCart,
+          !isMobile ? setTriggerAnimation : null,
+          productSelector,
+          product.title,
+          isMobile
+        );
+      } else {
+        console.warn('❌ Failed to find product image with selector:', productSelector);
+      }
+    };
+
     return(<>
-
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-        <video
-            src={fvVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        ></video>
-        <div
-            style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.8)", 
-            // 半透明灰色遮罩
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "white",
-            fontSize: "2rem",
-            fontWeight: "bold",
-            textAlign: "center",
-            padding: "0 20px",
-            }}
-        >
-            A gift as special as your love
-        </div>
-    </div>
-
-
-
-    {/* <div className="position-relative">
-      <div className="position-absolute" style={{top:'0', bottom:'0', left:'0', right:'0', backgroundImage: 'url(https://images.unsplash.com/photo-1480399129128-2066acb5009e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)',
-      backgroundPosition: 'center center', opacity: '0.1'}}></div>
-      <div className="container d-flex flex-column" style={{minHeight: '100vh'}}>
-  
-        <div className="row justify-content-center my-auto">
-            <div className="col-md-4 text-center">
-                <h2>Lorem ipsum.</h2>
-                <p className="text-muted mb-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
-                <button className="btn btn-dark rounded-0 mt-6">Lorem ipsum.</button>
-            </div>
-        </div>
+    <div className="fv-background">
+      <video
+          src={fvVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fv-video"
+      ></video>
+      <div className="fv-content">
+          A gift as special as your love
       </div>
-    </div> */}
-
+    </div>
 
     <div className="container">
       <div className="row mt-5">
-        <div className="col-md-4 mt-md-4">
-          <div className="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              className="card-img-top rounded-0"
-              alt="..."
-            />
-            <div className="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div className="d-flex justify-content-between">
-                <p className="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
+        <h3 className='topSales'>Top Sales</h3>
+        {topSalesProducts.map((product, index) => {
+            return(
+              <div className="col-md-4 mt-md-4" key={index}>
+                  <div className="card border-0 mb-4">
+                    {product && product.imageUrl && (
+                        <HoverImage product={product} />
+                    )}
+                    {/* Promotion Badge */}
+                    <div className="promotion-badge">
+                        <i className="bi bi-tag-fill"></i> Up to 20% off
+                    </div>
+                    <div className="card-body">
+                        <h2 className="card-title mb-0 mt-1">
+                            <Link to={`/product/${product?.id}`} className="">{product?.title}</Link>
+                        </h2>
+                        <div className="d-flex align-items-center mt-1 mb-1">
+                            <p className='mb-1 text-muted fw-bold specialPrice3'>
+                                ${product?.price}
+                            </p>
+                            <small className='mb-1 text-muted originalPrice3'>
+                                ${product?.origin_price}
+                            </small>
+                        </div>
+        
+                        {/* <div className="d-flex justify-content-between">
+                            <p className="card-text text-muted mb-0">
+                              ${product?.content}
+                            </p>
+                        </div> */}
+                    </div>
+                    <div className="add_to_cart">
+                      <button type="button" className="btn btn-success d-none d-md-block" onClick={() => handleAddToCart(product, false)}>
+                          <i className="bi bi-cart4"></i>
+                          Add to cart
+                      </button>
+                      <button type="button" className="btn btn-success d-block d-md-none" onClick={() => handleAddToCart(product, true)}>
+                          <i className="bi bi-cart4"></i>
+                          Add to cart
+                      </button>
+                    </div>
+                    {triggerAnimation && (
+                      <CartAnimation
+                        cartIconRef={cartIconRef}
+                        productRect={triggerAnimation?.rect}
+                        currentImageUrl={triggerAnimation?.imageUrl}
+                      />
+                    )}   
+                  </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4 mt-md-4">
-          <div className="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              className="card-img-top rounded-0"
-              alt="..."
-            />
-            <div className="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div className="d-flex justify-content-between">
-                <p className="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4 mt-md-4">
-          <div className="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              className="card-img-top rounded-0"
-              alt="..."
-            />
-            <div className="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div className="d-flex justify-content-between">
-                <p className="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+            )
+        })}
+    
+
+        <button>View More Products</button>
       </div>
     </div>
+
     <div className="bg-light mt-7">
       <div className="container">
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
@@ -117,7 +115,7 @@ function Home(){
             <div className="carousel-item active">
               <div className="row justify-content-center py-7">
                 <div className="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
+                  <h3>Customer Review</h3>
                   <p className="my-5">“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
                   <p><small>—Lorem ipsum dolor sit amet.—</small></p>
                 </div>
@@ -153,6 +151,7 @@ function Home(){
         </div>
       </div>
     </div>
+
     <div className="container my-7">
       <div className="row">
         <div className="col-md-6">
@@ -173,6 +172,7 @@ function Home(){
         </div>
       </div>
     </div>
+
     <div className="bg-light py-4">
       <div className="container">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start">

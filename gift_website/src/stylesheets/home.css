@@ -1,0 +1,33 @@
+.fv-background{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+.fv-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.fv-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Translucent gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 20px;
+}
+.topSales{
+    font-family: 'Gloria Hallelujah', cursive;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}

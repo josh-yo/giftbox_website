@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<FrontLayout/>}>
-          <Route path='' element={<Home/>}></Route>
+          <Route path='' element={<Home allproducts={allProducts}/>}></Route>
           <Route path='products' element={<Products allproducts={allProducts}/>}></Route>
           <Route path='product/:id' element={<ProductDetail allproducts={allProducts}/>}></Route>
           <Route path='cart' element={<Cart />}></Route>
