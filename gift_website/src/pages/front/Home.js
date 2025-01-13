@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { addToCart } from "../../components/AddToCart";
 import fvVideo from './fv_video.mp4'
+import brand_video1 from './brand_video1.mp4'
+import brand_video2 from './brand_video2.mp4'
 import HoverImage from "../../components/HoverImage";
 import CartAnimation from "../../components/CartAnimation";
 import '../../stylesheets/home.css'
@@ -47,16 +49,16 @@ function Home({ allproducts }) {
           A gift as special as your love
       </div>
     </div>
-
+    {/* Top Sales */}
     <div className="container">
       <div className="row mt-5">
         <h3 className='topSales'>Top Sales</h3>
         {topSalesProducts.map((product, index) => {
             return(
-              <div className="col-md-4 mt-md-4" key={index}>
+              <div className="col-md-4 mt-4" key={index}>
                   <div className="card border-0 mb-4">
                     {product && product.imageUrl && (
-                        <HoverImage product={product} />
+                      <HoverImage product={product} />
                     )}
                     {/* Promotion Badge */}
                     <div className="promotion-badge">
@@ -74,12 +76,6 @@ function Home({ allproducts }) {
                                 ${product?.origin_price}
                             </small>
                         </div>
-        
-                        {/* <div className="d-flex justify-content-between">
-                            <p className="card-text text-muted mb-0">
-                              ${product?.content}
-                            </p>
-                        </div> */}
                     </div>
                     <div className="add_to_cart">
                       <button type="button" className="btn btn-success d-none d-md-block" onClick={() => handleAddToCart(product, false)}>
@@ -97,17 +93,56 @@ function Home({ allproducts }) {
                         productRect={triggerAnimation?.rect}
                         currentImageUrl={triggerAnimation?.imageUrl}
                       />
-                    )}   
+                    )}
                   </div>
               </div>
             )
         })}
-    
 
-        <button>View More Products</button>
+        <div className="text-center mt-4">
+          <Link to="/products" className="view-more">
+            <span className="">View More Products</span>
+          </Link>
+        </div>
+
       </div>
     </div>
-
+    {/* Brand Video */}
+    <div className="container my-7">
+      <div className="row">
+        <div className="col-md-6">
+          <video
+            src={brand_video1}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-100"
+          ></video>
+        </div>
+        <div className="col-md-4 m-auto text-center">
+          <h4 className="mt-4">Surprise Delivered</h4>
+          <p className="text-muted">Every box is packed with a moment of pure delight.</p>
+        </div>
+      </div>
+      <div className="row flex-row-reverse justify-content-between mt-4">
+        <div className="col-md-6">
+          <video
+            src={brand_video2}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-100"
+          ></video>
+        </div>
+        <div className="col-md-4 m-auto text-center">
+          <h4 className="mt-4">Celebrate Together</h4>
+          <p className="text-muted">Happiness is always better when shared.</p>
+        </div>
+      </div>
+    </div>
+    {/* Customer Review */}
     <div className="bg-light mt-7">
       <div className="container">
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
@@ -151,28 +186,6 @@ function Home({ allproducts }) {
         </div>
       </div>
     </div>
-
-    <div className="container my-7">
-      <div className="row">
-        <div className="col-md-6">
-          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" className="img-fluid" />
-        </div>
-        <div className="col-md-4 m-auto text-center">
-          <h4 className="mt-4">Lorem ipsum</h4>
-          <p className="text-muted">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-        </div>
-      </div>
-      <div className="row flex-row-reverse justify-content-between mt-4">
-        <div className="col-md-6">
-          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" className="img-fluid" />
-        </div>
-        <div className="col-md-4 m-auto text-center">
-          <h4 className="mt-4">Lorem ipsum</h4>
-          <p className="text-muted">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-        </div>
-      </div>
-    </div>
-
     <div className="bg-light py-4">
       <div className="container">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start">
