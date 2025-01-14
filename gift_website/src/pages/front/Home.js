@@ -200,44 +200,52 @@ function Home({ allproducts }) {
     {/* Customer Review */}
     <div className="bg-light mt-7">
       <div className="container">
-        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="row justify-content-center py-7">
-                <div className="col-md-6 text-center">
-                  <h3>Customer Review</h3>
-                  <p className="my-5">“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
+        <div id="carouselCustomerReview" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {/* Review 1 */}
+            <div className="carousel-item active" data-bs-interval="3300">
+              <div className="row justify-content-center py-5">
+                <div className="col-9 col-md-6 text-center">
+                  <h3 className="mb-4">Customer Review</h3>
+                  <div className="">
+                    <img src="https://plus.unsplash.com/premium_photo-1661638602439-60a0b9b4d6cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="..."/>
+                  </div>
+                  <p className="my-4">“The smile on my mom's face says it all. It was such a joy to see her so happy. Best gift ever, Highly recommend!”</p>
+                  <p><small>— Sophia L. —</small></p>
                 </div>
               </div>
             </div>
-            <div className="carousel-item">
-              <div className="row justify-content-center py-7">
-                <div className="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p className="my-5">“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
+            {/* Review 2 */}
+            <div className="carousel-item" data-bs-interval="3300">
+              <div className="row justify-content-center py-5">
+                <div className="col-9 col-md-6 text-center">
+                  <h3 className="mb-4">Customer Review</h3>
+                  <img src="https://plus.unsplash.com/premium_photo-1667520327805-87f70ba78a31?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8" class="d-block w-100" alt="..."/>
+                  <p className="my-4">“Seeing our daughter's happiness while giving this gift was priceless. It brought so much joy to all of us!”</p>
+                  <p><small>— Aiden K. —</small></p>
                 </div>
               </div>
             </div>
-            <div className="carousel-item">
-              <div className="row justify-content-center py-7">
-                <div className="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p className="my-5">“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
+            {/* Review 3 */}
+            <div className="carousel-item" data-bs-interval="3300">
+              <div className="row justify-content-center py-5">
+                <div className="col-9 col-md-6 text-center">
+                  <h3 className="mb-4">Customer Review</h3>
+                  <img src="https://plus.unsplash.com/premium_photo-1661512385206-e7ac01d9e961?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="..."/>
+                  <p className="my-4">“The perfect gift for family moments. My wife loved it, and the kids were so excited to give it to her!”</p>
+                  <p><small>— James P. —</small></p>
                 </div>
               </div>
             </div>
           </div>
-          <a className="carousel-control-prev" href="#carouselExampleControls"  role="button" data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </div>
