@@ -249,16 +249,38 @@ function Home({ allproducts }) {
         </div>
       </div>
     </div>
-    <div className="bg-light py-4">
-      <div className="container">
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start">
-          <p className="mb-0 fw-bold">Lorem ipsum dolor sit amet.</p>
-          <div className="input-group w-md-50 mt-md-0 mt-3">
-            <input type="text" className="form-control rounded-0" placeholder="" />
-            <div className="input-group-append">
-              <button className="btn btn-dark rounded-0" type="button" id="search">
-                Lorem ipsum
-              </button>
+    {/* promotion banner */}
+    <div class="container-fluid bg-dark text-light pt-6 pb-4">
+      <div class="row text-center">
+        <div class="col-11 promotion-background mx-auto">
+          <div className="row">
+            <div class="col-6 col-md-3">
+              <div class="d-flex flex-column align-items-center pt-4 pb-2">
+                <i class="bi bi-truck display-4"></i>
+                <h5 class="mt-2">Free Shipping</h5>
+                <p class="small">Free delivery across Australia</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="d-flex flex-column align-items-center pt-4 pb-2">
+                <i class="bi bi-shield-lock display-4"></i>
+                <h5 class="mt-2">Secure Payment</h5>
+                <p class="small">Your data is always safe</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="d-flex flex-column align-items-center pt-4 pb-2">
+                <i class="bi bi-shop display-4"></i>
+                <h5 class="mt-2">Support Local</h5>
+                <p class="small">Shop and support Aussie brands</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="d-flex flex-column align-items-center pt-4 pb-2">
+                <i class="bi bi-gift display-4"></i>
+                <h5 class="mt-2">Gift Wrap</h5>
+                <p class="small">Make gifts look special</p>
+              </div>
             </div>
           </div>
         </div>

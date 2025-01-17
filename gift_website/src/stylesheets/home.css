@@ -43,3 +43,12 @@
 .view-more>span:hover{
     color: #d01345;
 }
+.promotion-background{
+    border: 2px solid white;
+    border-radius: 25px;
+}
+@media (min-width: 768px){
+    .promotion-background{
+        padding-left: 25px;
+    }
+}
