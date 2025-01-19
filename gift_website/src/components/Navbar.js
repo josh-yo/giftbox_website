@@ -50,7 +50,7 @@ function Navbar({ cartData, cartIconRef }){
             <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <NavLink className="nav-item nav-link home me-4" to="/">Home <span className="sr-only"></span></NavLink>
-                    <NavLink className="nav-item nav-link about me-4" to="/about">About</NavLink>
+                    <NavLink className="nav-item nav-link about me-4" to="/aboutus">About</NavLink>
                     <NavLink className="nav-item nav-link products me-4" to="/products">Product</NavLink>
                     <NavLink className="nav-item nav-link detail me-4" to="/detail">Contact</NavLink>
                 </div>
