@@ -15,6 +15,7 @@ import Products from './pages/front/Products';
 import ProductDetail from './pages/front/ProductDetail';
 import Cart from './pages/front/Cart';
 import AboutUs from '../src/components/AboutUs';
+import Contact from '../src/components/Contact'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,6 +38,7 @@ function App() {
           <Route path='' element={<Home allproducts={allProducts}/>}></Route>
           <Route path='aboutus' element={<AboutUs/>}></Route>
           <Route path='products' element={<Products allproducts={allProducts}/>}></Route>
+          <Route path='contact' element={<Contact/>}></Route>
           <Route path='product/:id' element={<ProductDetail allproducts={allProducts}/>}></Route>
           <Route path='cart' element={<Cart />}></Route>
         </Route>
