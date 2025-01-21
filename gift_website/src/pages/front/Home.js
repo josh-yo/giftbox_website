@@ -201,14 +201,14 @@ function Home({ allproducts }) {
     <div className="bg-light mt-7">
       <div className="container">
         <div id="carouselCustomerReview" className="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
+          <div className="carousel-inner">
             {/* Review 1 */}
             <div className="carousel-item active" data-bs-interval="3300">
               <div className="row justify-content-center py-5">
                 <div className="col-9 col-md-6 text-center">
                   <h3 className="mb-4">Customer Review</h3>
                   <div className="">
-                    <img src="https://plus.unsplash.com/premium_photo-1661638602439-60a0b9b4d6cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="..."/>
+                    <img src="https://plus.unsplash.com/premium_photo-1661638602439-60a0b9b4d6cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" className="d-block w-100" alt="..."/>
                   </div>
                   <p className="my-4">“The smile on my mom's face says it all. It was such a joy to see her so happy. Best gift ever, Highly recommend!”</p>
                   <p><small>— Sophia L. —</small></p>
@@ -220,7 +220,7 @@ function Home({ allproducts }) {
               <div className="row justify-content-center py-5">
                 <div className="col-9 col-md-6 text-center">
                   <h3 className="mb-4">Customer Review</h3>
-                  <img src="https://plus.unsplash.com/premium_photo-1667520327805-87f70ba78a31?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8" class="d-block w-100" alt="..."/>
+                  <img src="https://plus.unsplash.com/premium_photo-1667520327805-87f70ba78a31?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8" className="d-block w-100" alt="..."/>
                   <p className="my-4">“Seeing our daughter's happiness while giving this gift was priceless. It brought so much joy to all of us!”</p>
                   <p><small>— Aiden K. —</small></p>
                 </div>
@@ -231,55 +231,55 @@ function Home({ allproducts }) {
               <div className="row justify-content-center py-5">
                 <div className="col-9 col-md-6 text-center">
                   <h3 className="mb-4">Customer Review</h3>
-                  <img src="https://plus.unsplash.com/premium_photo-1661512385206-e7ac01d9e961?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="..."/>
+                  <img src="https://plus.unsplash.com/premium_photo-1661512385206-e7ac01d9e961?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGZhbWlseSUyMGdpZnR8ZW58MHx8MHx8fDA%3D" className="d-block w-100" alt="..."/>
                   <p className="my-4">“The perfect gift for family moments. My wife loved it, and the kids were so excited to give it to her!”</p>
                   <p><small>— James P. —</small></p>
                 </div>
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselCustomerReview" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
       </div>
     </div>
     {/* promotion banner */}
-    <div class="container-fluid bg-dark text-light pt-6 pb-4">
-      <div class="row text-center">
-        <div class="col-11 promotion-background mx-auto">
+    <div className="container-fluid bg-dark text-light pt-6 pb-4">
+      <div className="row text-center">
+        <div className="col-11 promotion-background mx-auto">
           <div className="row">
-            <div class="col-6 col-md-3">
-              <div class="d-flex flex-column align-items-center pt-4 pb-2">
-                <i class="bi bi-truck display-4"></i>
-                <h5 class="mt-2">Free Shipping</h5>
-                <p class="small">Free delivery across Australia</p>
+            <div className="col-6 col-md-3">
+              <div className="d-flex flex-column align-items-center pt-4 pb-2">
+                <i className="bi bi-truck display-4"></i>
+                <h5 className="mt-2">Free Shipping</h5>
+                <p className="small">Free delivery across Australia</p>
               </div>
             </div>
-            <div class="col-6 col-md-3">
-              <div class="d-flex flex-column align-items-center pt-4 pb-2">
-                <i class="bi bi-shield-lock display-4"></i>
-                <h5 class="mt-2">Secure Payment</h5>
-                <p class="small">Your data is always safe</p>
+            <div className="col-6 col-md-3">
+              <div className="d-flex flex-column align-items-center pt-4 pb-2">
+                <i className="bi bi-shield-lock display-4"></i>
+                <h5 className="mt-2">Secure Payment</h5>
+                <p className="small">Your data is always safe</p>
               </div>
             </div>
-            <div class="col-6 col-md-3">
-              <div class="d-flex flex-column align-items-center pt-4 pb-2">
-                <i class="bi bi-shop display-4"></i>
-                <h5 class="mt-2">Support Local</h5>
-                <p class="small">Shop and support Aussie brands</p>
+            <div className="col-6 col-md-3">
+              <div className="d-flex flex-column align-items-center pt-4 pb-2">
+                <i className="bi bi-shop display-4"></i>
+                <h5 className="mt-2">Support Local</h5>
+                <p className="small">Shop and support Aussie brands</p>
               </div>
             </div>
-            <div class="col-6 col-md-3">
-              <div class="d-flex flex-column align-items-center pt-4 pb-2">
-                <i class="bi bi-gift display-4"></i>
-                <h5 class="mt-2">Gift Wrap</h5>
-                <p class="small">Make gifts look special</p>
+            <div className="col-6 col-md-3">
+              <div className="d-flex flex-column align-items-center pt-4 pb-2">
+                <i className="bi bi-gift display-4"></i>
+                <h5 className="mt-2">Gift Wrap</h5>
+                <p className="small">Make gifts look special</p>
               </div>
             </div>
           </div>
