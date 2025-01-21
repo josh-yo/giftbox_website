@@ -43,10 +43,11 @@
   }
  
   @media (max-width:768px) {
+    .footer-container{
+      border-bottom: 1.1px solid #fff;
+    }
     .footer-title{
-        padding-bottom: 1rem;
         margin-bottom: 1.3rem;
-        border-bottom: 1.1px solid #fff;
     }
     .footer-list>li{
         padding-bottom: 10px;

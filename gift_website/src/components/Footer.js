@@ -31,7 +31,7 @@ function Footer() {
                 <div className="row">
 
                     {/* Services */}
-                    <div className="col-xs-12 col-md-3 mb-3 footer-container" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
                             aria-expanded={!isDesktop}
                             data-bs-target="#collapseOne" 
@@ -48,7 +48,7 @@ function Footer() {
                     </div>
 
                     {/* Contact */}
-                    <div className="col-xs-12 col-md-3 mb-3" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
                             aria-expanded={!isDesktop}
                             data-bs-target="#collapseTwo" 
@@ -63,7 +63,7 @@ function Footer() {
                     </div>
 
                     {/* Payments */}
-                    <div className="col-xs-12 col-md-3 mb-3" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
                             aria-expanded={!isDesktop}
                             data-bs-target="#collapseThree" 
@@ -81,7 +81,7 @@ function Footer() {
                     </div>
 
                     {/* Phone and Social Media */}
-                    <div className="col-xs-12 col-md-3 mb-3 contact-list">
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 mx-auto contact-list">
                         <h5 className="footer-title">CONTACT US</h5>
                         <p className="mb-1">
                         <i className="bi bi-telephone-fill me-2"></i>+61 412 345 678
