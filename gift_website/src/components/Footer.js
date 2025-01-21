@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 import React from "react";
 import "../stylesheets/footer.css";
 
@@ -13,13 +14,28 @@ function Footer() {
     // payments array
     const paymentImages = [amex, applepay, googlepay, visa, mastercard, paypal];
 
+    // Check if the screen width is less than 768px
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (<>
         <footer className="bg-dark text-white pt-5 pb-4">
             <div className="container" id="accordion">
                 <div className="row">
 
                     {/* Services */}
-                    <div className="col-xs-12 col-md-3 mb-3" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <div className="col-xs-12 col-md-3 mb-3 footer-container" 
+                            data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
+                            aria-expanded={!isDesktop}
+                            data-bs-target="#collapseOne" 
+                            aria-controls="collapseOne">
                         <h5 className="footer-title d-flex justify-content-between align-items-center">SERVICES
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
@@ -32,7 +48,11 @@ function Footer() {
                     </div>
 
                     {/* Contact */}
-                    <div className="col-xs-12 col-md-3 mb-3" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <div className="col-xs-12 col-md-3 mb-3" 
+                            data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
+                            aria-expanded={!isDesktop}
+                            data-bs-target="#collapseTwo" 
+                            aria-controls="collapseTwo">
                         <h5 className="footer-title d-flex justify-content-between align-items-center">ABOUT US
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
@@ -43,7 +63,11 @@ function Footer() {
                     </div>
 
                     {/* Payments */}
-                    <div className="col-xs-12 col-md-3 mb-3" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <div className="col-xs-12 col-md-3 mb-3" 
+                            data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
+                            aria-expanded={!isDesktop}
+                            data-bs-target="#collapseThree" 
+                            aria-controls="collapseThree">
                         <h5 className="footer-title d-flex justify-content-between align-items-center">PAYMENTS
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
