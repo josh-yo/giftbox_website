@@ -200,7 +200,7 @@ function Home({ allproducts }) {
     {/* Customer Review */}
     <div className="bg-light mt-7">
       <div className="container">
-        <div id="carouselCustomerReview" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselCustomerReview" className="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             {/* Review 1 */}
             <div className="carousel-item active" data-bs-interval="3300">

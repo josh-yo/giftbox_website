@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import ScrollToUp from '../../components/ScrollToUp';
 
 function FrontLayout(){
     const [cartData, setCartData] = useState({});
@@ -44,6 +45,8 @@ function FrontLayout(){
     <Outlet context={{ cartData, getCart, cartIconRef, scrollNextPage }}></Outlet>
 
     <Footer/>
+
+    <ScrollToUp/>
 
     <footer className="footer" 
         style={{  
