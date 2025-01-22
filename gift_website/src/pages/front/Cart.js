@@ -24,21 +24,9 @@
                 qty: quantity,
                 }
             }
+            // When the quantity is less than 1, ask for confirmation
             if (quantity < 1) {
-                // When the quantity is less than 1, remove the item
-                const confirmDelete = window.confirm(`Are you sure about removing "${item.product.title}"?`);
-                if (confirmDelete) {
-                    removeCartItem(item.id);
-                    toast.success(`"${item.product.title}" has been removed from your cart.`,{
-                        position: 'top-center',
-                        autoClose: 2800,
-                    });
-                }else{
-                    toast.info(`"${item.product.title}" was not removed.`,{
-                        position: 'top-center',
-                        autoClose: 2800,
-                    });
-                }
+                checkRemoveItem(item, false);
                 return;
             }
             try {
@@ -55,6 +43,23 @@
 
             } catch (error) {
                 console.log(error);
+            }
+        }
+        const checkRemoveItem = async ( item, forceRemove = false ) => {
+            // If sure to remove, remove the item
+            const confirmDelete = window.confirm(`Are you sure about removing "${item.product.title}"?`);
+            
+            if (confirmDelete) {
+                removeCartItem(item.id);
+                toast.success(`"${item.product.title}" has been removed from your cart.`,{
+                    position: 'top-center',
+                    autoClose: 2800,
+                });
+            }else{
+                toast.info(`"${item.product.title}" was not removed.`,{
+                    position: 'top-center',
+                    autoClose: 2800,
+                });
             }
         }
 
@@ -86,7 +91,7 @@
                                         type="button"
                                         className='position-absolute btn'
                                         style={{ top: '12px', right: '10px' }}
-                                        onClick={() => removeCartItem(item.id)}
+                                        onClick={() => checkRemoveItem(item)}
                                     >
                                         <i className='bi bi-x-lg'></i>
                                     </button>
