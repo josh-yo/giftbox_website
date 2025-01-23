@@ -12,7 +12,10 @@ function Navbar({ cartData, cartIconRef }){
     const isHomePage = location.pathname === "/";
     
     useEffect(() => {
-        if (!isHomePage) return;
+        if (!isHomePage) {
+            setIsScrolled(false);
+            return;
+        }
         
         const handleScroll = () => {
         if (window.scrollY > 50) {
