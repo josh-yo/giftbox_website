@@ -41,7 +41,7 @@ function Footer() {
                         </h5>
                         <ul className="footer-list list-unstyled d-md-block collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordion">
                             <li><a href="#account" className="footer-link">My Account</a></li>
-                            <li><a href="#shipping" className="footer-link">Delivery</a></li>
+                            <NavLink to="shipping-info" className="footer-link">Shipping Information</NavLink>
                             <li><a href="#returns" className="footer-link">Returns Policy</a></li>
                             <li><a href="#returns" className="footer-link">Privacy Policy</a></li>
                         </ul>

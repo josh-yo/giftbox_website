@@ -192,7 +192,7 @@ function ProductDetail({ allproducts }){
                           <div className="product-list list-unstyled collapse" id="collapse2" aria-labelledby="headingOne">
                             <p>Free Shipping on All Orders Within Australia</p>
                             <p>Delivery Within Australia Only</p>
-                            <p>Large or Heavy Items: No additional shipping charges.y</p>
+                            <p>Large or Heavy Items: No additional shipping charges.</p>
                           </div>
                       </div>
                       {/* Returns Policy */}

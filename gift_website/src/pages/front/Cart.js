@@ -45,8 +45,8 @@
                 console.log(error);
             }
         }
+        // When the quantity is less than 1 or click the delete button, ask for confirmation
         const checkRemoveItem = async ( item, forceRemove = false ) => {
-            // If sure to remove, remove the item
             const confirmDelete = window.confirm(`Are you sure about removing "${item.product.title}"?`);
             
             if (confirmDelete) {

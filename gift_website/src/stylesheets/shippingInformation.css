@@ -1,0 +1,21 @@
+.info-title, .shipping-page-title{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.shipping-page-title{
+    display: inline-block;
+    font-size: 2rem;
+    border-bottom: 8px solid wheat;
+    border-radius: 40%;
+}
+.info-section {
+    margin-bottom: 1.5rem;
+}
+.info-title{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.info-content {
+    line-height: 2;
+}
