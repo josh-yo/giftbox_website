@@ -58,7 +58,6 @@ function Footer() {
                         </h5>
                         <ul className="footer-list list-unstyled d-md-block collapse" id="collapseTwo" aria-labelledby="headingOne" data-bs-parent="#accordion">
                             <li><a href="#find-us" className="footer-link">Our Story</a></li>
-                            <li><a href="#map" className="footer-link">Customer Reviews</a></li>
                         </ul>
                     </div>
 
