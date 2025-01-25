@@ -17,6 +17,7 @@ import Cart from './pages/front/Cart';
 import AboutUs from '../src/components/AboutUs';
 import Contact from '../src/components/Contact'
 import ShippingInformation from '../src/pages/front/ShippingInformation';
+import ReturnsPolicy from '../src/pages/front/ReturnsPolicy';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,6 +44,7 @@ function App() {
           <Route path='product/:id' element={<ProductDetail allproducts={allProducts}/>}></Route>
           <Route path='cart' element={<Cart />}></Route>
           <Route path='shipping-info' element={<ShippingInformation />}></Route>
+          <Route path='returns-info' element={<ReturnsPolicy />}></Route>
         </Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/admin" element={<Dashboard/>}>
