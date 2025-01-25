@@ -45,7 +45,7 @@ function Footer() {
                             <li><a href="#account" className="footer-link">My Account</a></li>
                             <NavLink to="shipping-info" className="footer-link d-block">Shipping Information</NavLink>
                             <NavLink to="returns-info" className="footer-link d-block">Returns Policy</NavLink>
-                            <li><a href="#returns" className="footer-link">Privacy Policy</a></li>
+                            <NavLink to="privacy-info" className="footer-link d-block">Privacy Policy</NavLink>
                         </ul>
                     </div>
 
