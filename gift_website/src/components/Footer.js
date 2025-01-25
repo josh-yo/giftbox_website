@@ -31,12 +31,14 @@ function Footer() {
                 <div className="row">
 
                     {/* Services */}
-                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
+                        <h5 className="footer-title d-flex justify-content-between align-items-center"
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
-                            aria-expanded={!isDesktop}
                             data-bs-target="#collapseOne" 
-                            aria-controls="collapseOne">
-                        <h5 className="footer-title d-flex justify-content-between align-items-center">SERVICES
+                            aria-controls="collapseOne"
+                            aria-expanded={!isDesktop}
+                        >
+                            SERVICES
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
                         <ul className="footer-list list-unstyled d-md-block collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordion">
@@ -48,12 +50,14 @@ function Footer() {
                     </div>
 
                     {/* Contact */}
-                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
+                        <h5 className="footer-title d-flex justify-content-between align-items-center"
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
                             aria-expanded={!isDesktop}
                             data-bs-target="#collapseTwo" 
-                            aria-controls="collapseTwo">
-                        <h5 className="footer-title d-flex justify-content-between align-items-center">ABOUT US
+                            aria-controls="collapseTwo"
+                        >
+                            ABOUT US
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
                         <ul className="footer-list list-unstyled d-md-block collapse" id="collapseTwo" aria-labelledby="headingOne" data-bs-parent="#accordion">
@@ -62,12 +66,14 @@ function Footer() {
                     </div>
 
                     {/* Payments */}
-                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto" 
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
+                        <h5 className="footer-title d-flex justify-content-between align-items-center"
                             data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
                             aria-expanded={!isDesktop}
                             data-bs-target="#collapseThree" 
-                            aria-controls="collapseThree">
-                        <h5 className="footer-title d-flex justify-content-between align-items-center">PAYMENTS
+                            aria-controls="collapseThree"
+                        >
+                            PAYMENTS
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
                         <div className="footer-list list-unstyled d-md-block collapse" id="collapseThree" aria-labelledby="headingOne" data-bs-parent="#accordion">
