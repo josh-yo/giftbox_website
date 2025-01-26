@@ -14,7 +14,7 @@ function Products({ allproducts }){
     // Track the currently selected category
     const [selectedCategory, setSelectedCategory] = useState('');
 
-    const { getCart, cartIconRef, scrollNextPage } = useOutletContext();
+    const { getCart, cartIconRef, scrollNextPage, setIsLoading } = useOutletContext();
     const [triggerAnimation, setTriggerAnimation] = useState(null);
 
     const handleAddToCart = ( product, isMobile ) => {
@@ -65,10 +65,11 @@ function Products({ allproducts }){
 
     const getProducts = async( page = 1) => {
       (async() =>{
+          setIsLoading(true);
           const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`);
-          console.log(productRes);
           setProducts(productRes.data.products);
           setPagination(productRes.data.pagination);
+          setIsLoading(false);
       })();
     }
 

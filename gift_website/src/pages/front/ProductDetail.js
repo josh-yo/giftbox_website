@@ -11,7 +11,7 @@ function ProductDetail({ allproducts }){
     const [product, setProduct] = useState({});
     const [cartQuantity, setCartQuantity] = useState(1);
     const { id } = useParams(); // Get dynamic parameters from URL
-    const { getCart, cartIconRef  } = useOutletContext();
+    const { getCart, cartIconRef, setIsLoading } = useOutletContext();
 
     // Cart Animation Refs
     const [triggerAnimation, setTriggerAnimation] = useState(null);
@@ -21,8 +21,10 @@ function ProductDetail({ allproducts }){
     // Fetch product details from API by ID
     const getProduct = async(id) => {
         (async() =>{
+            setIsLoading(true);
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`);
             setProduct(productRes.data.product);
+            setIsLoading(false);
         })();
     }
     // Fetch product data when page loads or ID changes

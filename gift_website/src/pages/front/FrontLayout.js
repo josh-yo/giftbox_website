@@ -1,13 +1,16 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
+import { ThreeDot } from "react-loading-indicators";
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ScrollToUp from '../../components/ScrollToUp';
+import '../../stylesheets/loadingAnimation.css';
 
 function FrontLayout(){
     const [cartData, setCartData] = useState({});
     const cartIconRef = useRef(null);
+    const[isLoading, setIsLoading] = useState(false);
 
     const getCart = async() => {
         try {
@@ -36,13 +39,29 @@ function FrontLayout(){
     };
 
     useEffect(() => {
+        setIsLoading(true);
         getCart();
+
+        const handleLoad = () => {
+            setIsLoading(false);
+        }
+        window.addEventListener("load", handleLoad);
+
+        return () => {
+            window.removeEventListener("load", handleLoad);
+        }
     }, []);
 
     return(<>
+    { isLoading && (
+        <div className='loading-container'>
+            <ThreeDot variant="bounce" color="#e31431" size="large" text="Loading..." textColor="" />
+        </div>
+    )}
+    
     <Navbar cartData={cartData} cartIconRef={cartIconRef}/>
 
-    <Outlet context={{ cartData, getCart, cartIconRef, scrollNextPage }}></Outlet>
+    <Outlet context={{ cartData, getCart, cartIconRef, scrollNextPage, setIsLoading }}></Outlet>
 
     <Footer/>
 
