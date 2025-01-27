@@ -13,8 +13,7 @@ function Products({ allproducts }){
     const [products, setProducts] = useState([]);
     const [pagination, setPagination] = useState({});
     // Cart Button Animation
-    const [ clickCartButton, setClickCartButton ] = useState(false);
-    const [ activeButton, setActiveButton ] = useState(null); // unique product id
+    const [ activeButtons, setActiveButtons ] = useState({});
     // Track the currently selected category
     const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -33,14 +32,17 @@ function Products({ allproducts }){
         const productRect = productImage.getBoundingClientRect();
         const currentImageUrl = productImage.src;
 
-        setActiveButton(id);
+        // setActiveButton(id);
+        setActiveButtons((prevState) => ({
+          ...prevState,
+          [id]: true,
+        }));
         button.forEach(( button ) => {
           button.classList.add("active");
         });
         cartIcon.forEach(( cartIcon ) => {
           cartIcon.classList.add("d-none");
         });
-        setClickCartButton(true);
     
         addToCart(
           product.id,
@@ -61,8 +63,11 @@ function Products({ allproducts }){
             cartIcon.classList.remove("d-none");
           });
           
-          setClickCartButton(false);
-          setActiveButton(null);
+          setActiveButtons((prevState) => ({
+            ...prevState,
+            [id]: false,
+          }));
+          // setActiveButton(null);
         }, 2800);
 
       } else {
@@ -148,9 +153,9 @@ function Products({ allproducts }){
                       </div>
 
                       <div className="add_to_cart">
-                        <button type="button" disabled={activeButton === product.id} key={`${product.id}-pc`} data-product-id={product.id} className="btn btn-success d-none d-md-block cart-button" onClick={() => handleAddToCart(product, false, product.id)}>
+                        <button type="button" disabled={activeButtons[product.id]} key={`${product.id}-pc`} data-product-id={product.id} className="btn btn-success d-none d-md-block cart-button" onClick={() => handleAddToCart(product, false, product.id)}>
                           <div className="d-flex justify-content-center align-items-center">
-                            { clickCartButton && activeButton === product.id && (
+                            { activeButtons[product.id] && (
                               <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
                             )}
                             <i className="bi bi-cart4 cart-icon pc" data-icon-id={product.id}></i>
@@ -158,9 +163,9 @@ function Products({ allproducts }){
                           </div>
                         </button>
 
-                        <button type="button" disabled={activeButton === product.id} key={`${product.id}-phone`} data-product-id={product.id} className="btn btn-success d-block d-md-none cart-button" onClick={() => handleAddToCart(product, true, product.id)}>
+                        <button type="button" disabled={activeButtons[product.id]} key={`${product.id}-phone`} data-product-id={product.id} className="btn btn-success d-block d-md-none cart-button" onClick={() => handleAddToCart(product, true, product.id)}>
                           <div className="d-flex justify-content-center align-items-center">
-                            { clickCartButton && activeButton === product.id && (
+                            { activeButtons[product.id] && (
                               <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
                             )}
                             <i className="bi bi-cart4 cart-icon phone" data-icon-id={product.id}></i>
