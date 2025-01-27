@@ -43,13 +43,16 @@ function ProductDetail({ allproducts }){
       setCartQuantity((prev) => (prev === 1 ? prev : prev - 1));
     };
 
-    const handleAddToCart = ( isMobile ) => {
+    const handleAddToCart = ( isMobile, id ) => {
       // Cart loading animations and button disable when adding to cart
-      const button = document.querySelector(".cart-button");
+      const button = document.querySelectorAll(`button[data-product-id="${id}"]`);
+      // const button = document.querySelector(".cart-button");
       const cartIconPc = document.querySelector(".cart-icon-pc");
       const cartIconPhone = document.querySelector(".cart-icon-phone");
 
-      button.classList.add("active");
+      button.forEach(( button ) => {
+        button.classList.add("active");
+      });
       cartIconPc.classList.add("d-none");
       cartIconPhone.classList.add("d-none");
       setClickCartButton(true);
@@ -65,7 +68,9 @@ function ProductDetail({ allproducts }){
 
         // Reset button state after 2.8 seconds
         setTimeout(() => {
-          button.classList.remove("active");
+          button.forEach(( button ) => {
+            button.classList.remove("active");
+          });
           cartIconPc.classList.remove("d-none");
           cartIconPhone.classList.remove("d-none");
           setClickCartButton(false);
@@ -178,8 +183,8 @@ function ProductDetail({ allproducts }){
                 />
               </div>
               {/* Add to cart button */}
-              <button type="button" href="./checkout.html" disabled={isButtonDisabled} className="text-nowrap btn btn-success w-100 py-2 d-none d-md-block cart-button" 
-              onClick={() => handleAddToCart(false)}>
+              <button type="button" href="./checkout.html" disabled={isButtonDisabled} data-product-id={product.id} className="text-nowrap btn btn-success w-100 py-2 d-none d-md-block cart-button" 
+              onClick={() => handleAddToCart( false, product.id )}>
                 <div className="d-flex justify-content-center align-items-center">
                   { clickCartButton && (
                     <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
@@ -189,8 +194,8 @@ function ProductDetail({ allproducts }){
                 </div>
                 
               </button>
-              <button type="button" href="./checkout.html" disabled={isButtonDisabled} className="text-nowrap btn btn-success w-100 py-2 d-block d-md-none cart-button" 
-              onClick={() => handleAddToCart(true)}>
+              <button type="button" href="./checkout.html" disabled={isButtonDisabled} data-product-id={product.id} className="text-nowrap btn btn-success w-100 py-2 d-block d-md-none cart-button" 
+              onClick={() => handleAddToCart( true, product.id )}>
                 <div className="d-flex justify-content-center align-items-center">
                   { clickCartButton && (
                     <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
