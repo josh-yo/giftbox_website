@@ -22,7 +22,11 @@ export const addToCart = async (productId, cartQuantity, getCart, setTriggerAnim
     getCart();
     toast.success(
       <>
-        <span className="toast-product-title">{productTitle} successfully added to the cart!</span>
+        <span className="toast-product-title">
+          {productTitle}
+          <br/>
+          successfully added to the cart!
+        </span>
       </>,
     {
       position: 'top-center',

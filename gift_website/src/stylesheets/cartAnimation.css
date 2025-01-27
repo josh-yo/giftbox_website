@@ -10,6 +10,10 @@
 .toast-product-title{
     font-weight: bold;
 }
+.toast-product-title::first-line {
+    font-weight: bold;
+    color: #d01345;
+}
 .Toastify__toast{
     letter-spacing: 0.5px;
     word-spacing: 0.2rem;
