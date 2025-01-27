@@ -14,3 +14,23 @@
 .rli-text-format{
     margin-top: 15px!important;
 }
+
+/* Cart Button Loading Animations */
+.cart-button i {
+    margin-right: 9px;
+}
+.cart-button.active{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.cart-button:disabled{
+    cursor: wait;
+    pointer-events: auto;
+}
+.cart-content{
+    margin: 0;
+    flex-shrink: 0;
+}
+.OP-dotted-rli-bounding-box{
+    font-size: 4px!important;
+    margin-right: 9px;
+}

@@ -26,7 +26,7 @@ export const addToCart = async (productId, cartQuantity, getCart, setTriggerAnim
       </>,
     {
       position: 'top-center',
-      autoClose: 2800,
+      autoClose: 1900,
     });
     // accroding to the product image, set the trigger animation
     const productImage = document.querySelector(productSelector);

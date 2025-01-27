@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useOutletContext, useParams, NavLink } from "react-router-dom";
 import { addToCart } from "../../components/AddToCart";
+import { OrbitProgress } from "react-loading-indicators";
 import axios from "axios";
 import CartItem from "../../components/CartItem";
 import CartAnimation from "../../components/CartAnimation";
@@ -12,9 +13,11 @@ function ProductDetail({ allproducts }){
     const [cartQuantity, setCartQuantity] = useState(1);
     const { id } = useParams(); // Get dynamic parameters from URL
     const { getCart, cartIconRef, setIsLoading } = useOutletContext();
+    const [ clickCartButton, setClickCartButton ] = useState(false);
 
     // Cart Animation Refs
     const [triggerAnimation, setTriggerAnimation] = useState(null);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const activeImageRef = useRef(null);
     const productRef = useRef(null);
 
@@ -41,6 +44,16 @@ function ProductDetail({ allproducts }){
     };
 
     const handleAddToCart = ( isMobile ) => {
+      // Cart loading animations and button disable when adding to cart
+      const button = document.querySelector(".cart-button");
+      const cartIconPc = document.querySelector(".cart-icon-pc");
+      const cartIconPhone = document.querySelector(".cart-icon-phone");
+
+      button.classList.add("active");
+      cartIconPc.classList.add("d-none");
+      cartIconPhone.classList.add("d-none");
+      setClickCartButton(true);
+      setIsButtonDisabled(true);
       addToCart(
         product.id, 
         cartQuantity, 
@@ -49,6 +62,15 @@ function ProductDetail({ allproducts }){
         '.carousel-item.active img', 
         product.title,
         isMobile);
+
+        // Reset button state after 2.8 seconds
+        setTimeout(() => {
+          button.classList.remove("active");
+          cartIconPc.classList.remove("d-none");
+          cartIconPhone.classList.remove("d-none");
+          setClickCartButton(false);
+          setIsButtonDisabled(false);
+        }, 2800);
     };
 
     return(<>
@@ -156,13 +178,26 @@ function ProductDetail({ allproducts }){
                 />
               </div>
               {/* Add to cart button */}
-              <button type="button" href="./checkout.html" className="text-nowrap btn btn-success w-100 py-2 d-none d-md-block" 
+              <button type="button" href="./checkout.html" disabled={isButtonDisabled} className="text-nowrap btn btn-success w-100 py-2 d-none d-md-block cart-button" 
               onClick={() => handleAddToCart(false)}>
-                Add to cart  
+                <div className="d-flex justify-content-center align-items-center">
+                  { clickCartButton && (
+                    <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                  )}
+                  <i className="bi bi-cart4 cart-icon-pc"></i>
+                  <p className="cart-content">Add to cart</p>
+                </div>
+                
               </button>
-              <button type="button" href="./checkout.html" className="text-nowrap btn btn-success w-100 py-2 d-block d-md-none" 
+              <button type="button" href="./checkout.html" disabled={isButtonDisabled} className="text-nowrap btn btn-success w-100 py-2 d-block d-md-none cart-button" 
               onClick={() => handleAddToCart(true)}>
-                Add to cart  
+                <div className="d-flex justify-content-center align-items-center">
+                  { clickCartButton && (
+                    <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                  )}
+                  <i className="bi bi-cart4 cart-icon-phone"></i>
+                  <p className="cart-content">Add to cart</p>
+                </div>
               </button>
            
               {triggerAnimation && (
