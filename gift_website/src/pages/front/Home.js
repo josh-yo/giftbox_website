@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { addToCart } from "../../components/AddToCart";
+import { OrbitProgress } from "react-loading-indicators";
 import fvVideo from './fv_video.mp4'
 import brand_video1 from './brand_video1.mp4'
 import brand_video2 from './brand_video2.mp4'
@@ -14,14 +15,33 @@ function Home({ allproducts }) {
     const { getCart, cartIconRef } = useOutletContext();
     const [triggerAnimation, setTriggerAnimation] = useState(null);
 
-    const handleAddToCart = ( product, isMobile ) => {
+    // Cart Button Animation
+    const [ activeButtons, setActiveButtons ] = useState({});
+
+    const handleAddToCart = ( product, isMobile, id ) => {
       const productSelector = `[data-product-id="${product.id}"] img`;
       const productImage = document.querySelector(productSelector);
+
+      // Cart loading animations and button disable when adding to cart
+      const button = document.querySelectorAll(`button[data-product-id="${id}"]`);
+      const cartIcon = document.querySelectorAll(`.cart-icon[data-icon-id="${id}"]`);
       
       if (productImage) {
         const productRect = productImage.getBoundingClientRect();
         const currentImageUrl = productImage.src;
     
+        // setActiveButton(id);
+        setActiveButtons((prevState) => ({
+          ...prevState,
+          [id]: true,
+        }));
+        button.forEach(( button ) => {
+          button.classList.add("active");
+        });
+        cartIcon.forEach(( cartIcon ) => {
+          cartIcon.classList.add("d-none");
+        });
+
         addToCart(
           product.id,
           1,
@@ -31,6 +51,23 @@ function Home({ allproducts }) {
           product.title,
           isMobile
         );
+
+        // Reset button state after 2.8 seconds
+        setTimeout(() => {
+          button.forEach(( button ) => {
+            button.classList.remove("active");
+          });
+          cartIcon.forEach(( cartIcon ) => {
+            cartIcon.classList.remove("d-none");
+          });
+          
+          setActiveButtons((prevState) => ({
+            ...prevState,
+            [id]: false,
+          }));
+          // setActiveButton(null);
+        }, 2800);
+
       } else {
         console.warn('❌ Failed to find product image with selector:', productSelector);
       }
@@ -79,12 +116,18 @@ function Home({ allproducts }) {
                         </div>
                     </div>
                     <div className="add_to_cart">
-                      <button type="button" className="btn btn-success d-none d-md-block" onClick={() => handleAddToCart(product, false)}>
-                          <i className="bi bi-cart4"></i>
+                      <button type="button" className="btn btn-success d-none d-md-block cart-button" disabled={activeButtons[product?.id]} key={`${product?.id}-pc`} data-product-id={product?.id} onClick={() => handleAddToCart(product, false, product?.id)}>
+                          { activeButtons[product?.id] && (
+                            <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                          )}
+                          <i className="bi bi-cart4 cart-icon pc" data-icon-id={product?.id}></i>
                           Add to cart
                       </button>
-                      <button type="button" className="btn btn-success d-block d-md-none" onClick={() => handleAddToCart(product, true)}>
-                          <i className="bi bi-cart4"></i>
+                      <button type="button" className="btn btn-success d-block d-md-none cart-button" disabled={activeButtons[product?.id]} key={`${product?.id}-phone`} data-product-id={product?.id} onClick={() => handleAddToCart(product, true, product?.id)}>
+                          { activeButtons[product?.id] && (
+                            <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                          )}
+                          <i className="bi bi-cart4 cart-icon phone" data-icon-id={product?.id}></i>
                           Add to cart
                       </button>
                     </div>
@@ -170,12 +213,18 @@ function Home({ allproducts }) {
                         </div>
                     </div>
                     <div className="add_to_cart">
-                      <button type="button" className="btn btn-success d-none d-md-block" onClick={() => handleAddToCart(product, false)}>
-                          <i className="bi bi-cart4"></i>
+                      <button type="button" className="btn btn-success d-none d-md-block cart-button" disabled={activeButtons[product?.id]} key={`${product?.id}-pc`} data-product-id={product?.id} onClick={() => handleAddToCart(product, false, product?.id)}>
+                          { activeButtons[product?.id] && (
+                            <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                          )}
+                          <i className="bi bi-cart4 cart-icon pc" data-icon-id={product?.id}></i>
                           Add to cart
                       </button>
-                      <button type="button" className="btn btn-success d-block d-md-none" onClick={() => handleAddToCart(product, true)}>
-                          <i className="bi bi-cart4"></i>
+                      <button type="button" className="btn btn-success d-block d-md-none cart-button" disabled={activeButtons[product?.id]} key={`${product?.id}-phone`} data-product-id={product?.id} onClick={() => handleAddToCart(product, true, product?.id)}>
+                          { activeButtons[product?.id] && (
+                            <OrbitProgress variant="dotted" color="#32cd32" size="small" text="" textColor="" />
+                          )}
+                          <i className="bi bi-cart4 cart-icon phone" data-icon-id={product?.id}></i>
                           Add to cart
                       </button>
                     </div>
