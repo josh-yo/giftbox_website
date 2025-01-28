@@ -60,9 +60,11 @@ function RecommendedProducts({ allproducts, product }) {
                                                         </small>
                                                     </div>
                                                     <div className="add_to_cart">
-                                                        <button type="button" className="btn btn-success d-none d-md-block">
-                                                        <i className="bi bi-cart4"></i>
-                                                        Add to cart
+                                                        <button type="button" className="btn btn-primary details-button">
+                                                            <i className="bi bi-search-heart"></i>
+                                                                <Link to={`/product/${product.id}`} className="see-more-link" data-product-id={product.id}>
+                                                                    <span>View Details</span>
+                                                                </Link>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -104,9 +106,11 @@ function RecommendedProducts({ allproducts, product }) {
                                                         </small>
                                                     </div>
                                                     <div className="add_to_cart">
-                                                        <button type="button" className="btn btn-success d-none d-md-block">
-                                                        <i className="bi bi-cart4"></i>
-                                                        Add to cart
+                                                        <button type="button" className="btn btn-primary details-button">
+                                                            <i className="bi bi-search-heart"></i>
+                                                                <Link to={`/product/${product.id}`} className="see-more-link" data-product-id={product.id}>
+                                                                    <span>View Details</span>
+                                                                </Link>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -148,9 +152,11 @@ function RecommendedProducts({ allproducts, product }) {
                                                         </small>
                                                     </div>
                                                     <div className="add_to_cart">
-                                                        <button type="button" className="btn btn-success d-none d-md-block">
-                                                        <i className="bi bi-cart4"></i>
-                                                        Add to cart
+                                                        <button type="button" className="btn btn-primary details-button">
+                                                            <i className="bi bi-search-heart"></i>
+                                                                <Link to={`/product/${product.id}`} className="see-more-link" data-product-id={product.id}>
+                                                                    <span>View Details</span>
+                                                                </Link>
                                                         </button>
                                                     </div>
                                                 </div>
