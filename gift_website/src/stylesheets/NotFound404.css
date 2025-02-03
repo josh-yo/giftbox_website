@@ -1,0 +1,89 @@
+/* navbar */
+.not-found-navbar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4)!important;
+    padding-top: 1.5rem!important;
+    padding-bottom: 1rem;
+    z-index: 99;
+    position: fixed;
+}
+.not-found-logo h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: white;
+}
+.not-found-bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #210b39;
+}
+/* title & subtitle */
+.not-found-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 99;
+}
+.not-found-title {
+    position: absolute;
+    font-size: 2.5rem;
+    color: #01e06d;
+    z-index: 99;
+    /* center */
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.not-found-subtext {
+    position: absolute;
+    font-size: 1.5rem;
+    color: orange;
+    z-index: 99;
+    /* center */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 26%;
+    text-decoration: none;
+    overflow: hidden;
+}
+.not-found-subtext:hover{
+    color: orangered;
+}
+.not-found-subtext::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: white;
+    animation: slide-in 2.5s linear infinite;
+}
+/* text animation */
+@keyframes slide-in {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+/* Lottie */
+.not-found-animation {
+    width: 100vw;
+    height: auto;
+    transform: scale(1.2);
+}
+@media (max-width: 768px) {
+    .not-found-animation {
+        width: 200vw;
+        height: auto;
+    }
+}

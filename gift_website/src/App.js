@@ -19,6 +19,7 @@ import Contact from '../src/components/Contact'
 import ShippingInformation from '../src/pages/front/ShippingInformation';
 import ReturnsPolicy from '../src/pages/front/ReturnsPolicy';
 import PrivacyPolicy from '../src/pages/front/PrivacyPolicy';
+import NotFound404 from './pages/front/NotFound404';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -52,6 +53,7 @@ function App() {
         <Route path="/admin" element={<Dashboard/>}>
           <Route path="products" element={<AdminProducts/>}></Route> 
         </Route>
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
