@@ -30,6 +30,23 @@ function Footer() {
             <div className="container" id="accordion">
                 <div className="row">
 
+                    {/* Shop */}
+                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
+                        <h5 className="footer-title d-flex justify-content-between align-items-center"
+                            data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
+                            aria-expanded={!isDesktop}
+                            data-bs-target="#collapseTwo" 
+                            aria-controls="collapseTwo"
+                        >
+                            SHOP
+                            <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
+                        </h5>
+                        <ul className="footer-list list-unstyled d-md-block collapse" id="collapseTwo" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                            <NavLink to="/products" className="footer-link d-block">Shop All</NavLink>
+                            <NavLink to="/product/-OGTAO1jkH7Y5AmJXWTA" className="footer-link d-block">Wrapping Service</NavLink>
+                        </ul>
+                    </div>
+
                     {/* Services */}
                     <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
                         <h5 className="footer-title d-flex justify-content-between align-items-center"
@@ -42,26 +59,9 @@ function Footer() {
                             <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
                         </h5>
                         <ul className="footer-list list-unstyled d-md-block collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                            <li><a href="#account" className="footer-link">My Account</a></li>
                             <NavLink to="shipping-info" className="footer-link d-block">Shipping Information</NavLink>
                             <NavLink to="returns-info" className="footer-link d-block">Returns Policy</NavLink>
                             <NavLink to="privacy-info" className="footer-link d-block">Privacy Policy</NavLink>
-                        </ul>
-                    </div>
-
-                    {/* Contact */}
-                    <div className="col-11 col-sm-12 col-md-3 mb-4 footer-container mx-auto">
-                        <h5 className="footer-title d-flex justify-content-between align-items-center"
-                            data-bs-toggle={!isDesktop ? "collapse" : null} // only active when the screen width is less than 768px
-                            aria-expanded={!isDesktop}
-                            data-bs-target="#collapseTwo" 
-                            aria-controls="collapseTwo"
-                        >
-                            ABOUT US
-                            <span className="bi bi-chevron-down toggle-icon d-md-none d-sm-block"></span>
-                        </h5>
-                        <ul className="footer-list list-unstyled d-md-block collapse" id="collapseTwo" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                            <li><a href="#find-us" className="footer-link">Our Story</a></li>
                         </ul>
                     </div>
 
