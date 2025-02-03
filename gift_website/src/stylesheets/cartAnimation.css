@@ -12,9 +12,30 @@
 }
 .toast-product-title::first-line {
     font-weight: bold;
-    color: #d01345;
 }
 .Toastify__toast{
     letter-spacing: 0.5px;
     word-spacing: 0.2rem;
+}
+
+/* cart page animation */
+.cart-loading-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+.cart-loading-animation{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

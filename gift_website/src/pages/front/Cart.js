@@ -1,11 +1,15 @@
     import { useOutletContext, Link } from "react-router-dom";
-    import { useEffect } from "react";
+    import { useEffect, useState } from "react";
     import { ToastContainer, toast } from 'react-toastify';
+    import { OrbitProgress } from "react-loading-indicators";
     import axios from "axios";
     import CartItem from "../../components/CartItem";
     import '../../stylesheets/cart.css';
 
     function Cart() {
+        // Cart Animation
+        const [ activeAnimation, setActiveAnimation ] = useState({});
+
         const { cartData, getCart } = useOutletContext();
         // Remove an item from the cart by ID
         const removeCartItem = async ( id ) => {
@@ -17,7 +21,21 @@
             }
         }
         // Update cart item quantity
-        const updateCartItem = async ( item, quantity ) => {
+        const updateCartItem = async ( item, quantity, id ) => {
+            // setActiveAnimation(id);
+            setActiveAnimation((prevState) => ({
+                ...prevState,
+                [id]: true,
+            }));
+
+            // Reset animation state after 2.8 seconds
+            setTimeout(() => {
+                setActiveAnimation((prevState) => ({
+                    ...prevState,
+                    [id]: false,
+                }));
+            }, 2900);
+
             const data = {
                 data: {
                 product_id: item.product_id,
@@ -38,7 +56,7 @@
                     </>,
                   {
                     position: 'top-center',
-                    autoClose: 2800,
+                    autoClose: 2000,
                 });
 
             } catch (error) {
@@ -53,12 +71,12 @@
                 removeCartItem(item.id);
                 toast.success(`"${item.product.title}" has been removed from your cart.`,{
                     position: 'top-center',
-                    autoClose: 2800,
+                    autoClose: 2000,
                 });
             }else{
                 toast.info(`"${item.product.title}" was not removed.`,{
                     position: 'top-center',
-                    autoClose: 2800,
+                    autoClose: 2000,
                 });
             }
         }
@@ -87,6 +105,13 @@
                                 </Link>
                                 
                                 <div className='w-100 p-3 position-relative'>
+                                    { activeAnimation[item.id] && (
+                                        <div className="cart-loading-bg">
+                                            <div className="cart-loading-animation">
+                                                <OrbitProgress variant="spokes" color={["#FCCA00"]} size="medium" text="" textColor="" />
+                                            </div>
+                                        </div>
+                                    )}
                                     <button
                                         type="button"
                                         className='position-absolute btn'
@@ -114,8 +139,8 @@
                                             <div>QTY：</div>
                                             <CartItem 
                                                 cartQuantity={item.qty} 
-                                                increaseQuantity={() => updateCartItem(item, item.qty + 1)}
-                                                decreaseQuantity={() => updateCartItem(item, item.qty - 1)}
+                                                increaseQuantity={() => updateCartItem(item, item.qty + 1, item.id)}
+                                                decreaseQuantity={() => updateCartItem(item, item.qty - 1, item.id)}
                                             />
                                         </div>
                                     </div>
