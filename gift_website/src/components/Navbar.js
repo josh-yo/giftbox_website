@@ -59,12 +59,12 @@ function Navbar({ cartData, cartIconRef }){
                 </div>
                 {/* icon */}
                 <div className="d-flex align-items-center icon">
-                    <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
-                    <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink>
+                    {/* <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
+                    <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink> */}
                     
                     <NavLink className="nav-item nav-link position-relative" to="/cart">
-                        <i className="bi bi-cart4 nav-icon" style={{color: 'white'}} ref={cartIconRef}></i>
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <i className="bi bi-cart4 nav-icon fs-5" style={{color: 'white'}} ref={cartIconRef}></i>
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-quantity">
                             {cartData?.carts?.length}
                         </span>
                     </NavLink>

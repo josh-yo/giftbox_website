@@ -119,3 +119,15 @@
         }
     }
 }
+
+.cart-quantity{
+    margin-left: 10px;
+}
+@media(max-width: 768px){
+    .cart-quantity{
+        margin-left: 0;
+    }
+    .detail{
+        margin-bottom: 10px;
+    }
+}
