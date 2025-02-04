@@ -59,6 +59,7 @@ function Navbar({ cartData, cartIconRef }){
                 </div>
                 {/* icon */}
                 <div className="d-flex align-items-center icon">
+                    {/* "My Account" and "Wishlist" are temporarily removed. To enable them, uncomment the code below. */}
                     {/* <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
                     <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink> */}
                     

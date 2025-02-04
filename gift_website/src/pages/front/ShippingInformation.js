@@ -1,3 +1,4 @@
+import MoreHelpButton from "../../components/MoreHelpButton";
 import "../../stylesheets/shippingInformation.css";
 
 function ShippingInformation() {
@@ -29,8 +30,9 @@ function ShippingInformation() {
                     </div>
                     <div className="info-section">
                         <h4 className="info-title">Large or Heavy Items</h4>
-                        <p className="info-content mb-5">For large or heavy items, there are no additional shipping charges.</p>
+                        <p className="info-content">For large or heavy items, there are no additional shipping charges.</p>
                     </div>
+                    <MoreHelpButton />
                 </div>
             </div>
         </div>

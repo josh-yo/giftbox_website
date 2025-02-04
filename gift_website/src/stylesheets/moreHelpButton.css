@@ -1,0 +1,9 @@
+.help-button{
+    text-decoration: none;
+    color: white;
+    display: block;
+    max-width: 175px;
+    width: auto;
+    text-align: center;
+    margin-left: 0;
+}

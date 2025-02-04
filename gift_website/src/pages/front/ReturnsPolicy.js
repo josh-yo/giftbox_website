@@ -1,3 +1,4 @@
+import MoreHelpButton from "../../components/MoreHelpButton";
 import '../../stylesheets/returnsPolicy.css';
 
 function ReturnsPolicy() {
@@ -24,6 +25,7 @@ function ReturnsPolicy() {
                         <h4 className="info-title">4. Proof of Purchase</h4>
                         <p className="info-content">Keep your invoice or order reference handy for quick and efficient assistance with your return request.</p>
                     </div>
+                    <MoreHelpButton />
                 </div>
             </div>
         </div>

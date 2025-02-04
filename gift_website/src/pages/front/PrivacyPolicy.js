@@ -1,3 +1,4 @@
+import MoreHelpButton from "../../components/MoreHelpButton";
 import '../../stylesheets/privacyPolicy.css';
 
 function PrivacyPolicy() {
@@ -44,6 +45,7 @@ function PrivacyPolicy() {
                             We may update our Privacy Policy from time to time. Any changes will be posted on this page, so please check back periodically.
                         </p>
                     </div>
+                    <MoreHelpButton />
                 </div>
             </div>
         </div>
