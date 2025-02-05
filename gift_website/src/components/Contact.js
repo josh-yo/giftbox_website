@@ -1,6 +1,19 @@
+import { ToastContainer, toast } from 'react-toastify';
 import '../stylesheets/contact.css'
+import { useState } from 'react';
 
 function ContactUs(){
+    const handleSubmit = (e) => {
+        // Prevent the form from refreshing the page
+        e.preventDefault();
+
+        toast.success("Message sent successfully!");
+
+        // Clear the form
+        e.target.reset();
+    };
+
+    
     return(<>
         <div className="container mt-5 mb-5">
             <div className="row d-flex justify-content-center align-items-center">
@@ -14,17 +27,28 @@ function ContactUs(){
                 <div className="col-12 col-sm-5 col-md-4">
                     <div className="form-section">
                         <h2>Get in Touch</h2>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <input type="text" placeholder="Name" required />
+                                <input type="text" placeholder="Name" name="name" required 
+                                onInvalid={(e) => e.target.setCustomValidity("Please fill out this field.")}
+                                onInput={(e) => e.target.setCustomValidity("")}
+                                />
                             </div>
                             <div className="form-group">
-                                <input type="email" placeholder="Email" required />
+                                <input type="email" placeholder="Email" required 
+                                onInvalid={(e) => e.target.setCustomValidity("Please enter a valid email address")}
+                                onInput={(e) => e.target.setCustomValidity("")}
+                                />
                             </div>
                             <div className="form-group">
-                                <textarea placeholder="Message" required></textarea>
+                                <textarea placeholder="Message" required 
+                                onInvalid={(e) => e.target.setCustomValidity("Please fill out this field.")}
+                                onInput={(e) => e.target.setCustomValidity("")}
+                                >
+                                </textarea>
                             </div>
-                            <button type="button" className="submit-button form-button">Send</button>
+                            <input type="submit" className="submit-button form-button" value="Send" />
+                            {/* <button type="button" className="submit-button form-button">Send</button> */}
                         </form>
                     </div>
                 </div>
