@@ -12,7 +12,6 @@ function ContactUs(){
         // Clear the form
         e.target.reset();
     };
-
     
     return(<>
         <div className="container mt-5 mb-5">
@@ -48,7 +47,6 @@ function ContactUs(){
                                 </textarea>
                             </div>
                             <input type="submit" className="submit-button form-button" value="Send" />
-                            {/* <button type="button" className="submit-button form-button">Send</button> */}
                         </form>
                     </div>
                 </div>

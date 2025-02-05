@@ -1,4 +1,4 @@
-    import { useOutletContext, Link } from "react-router-dom";
+    import { useOutletContext, Link, NavLink } from "react-router-dom";
     import { useEffect, useState } from "react";
     import { ToastContainer, toast } from 'react-toastify';
     import { OrbitProgress } from "react-loading-indicators";
@@ -88,8 +88,14 @@
                         className='col-md-7 col-xl-6 bg-white py-5'
                         style={{minHeight: 'calc(100vh - 56px - 76px)'}}
                     >
-                        <div className='d-flex justify-content-between'>
-                            <h2 className='mt-2'>Your order</h2>
+                        <div className='d-flex justify-content-between align-items-end'>
+                            <h2 className='order-title'>Your order</h2>
+                            {cartData?.carts?.length > 1 && (
+                                <p className='cleanAll-btn'>
+                                    <i class="bi bi-trash mx-2"></i>
+                                    Clear Cart
+                                </p>
+                            )}
                         </div>
 
                         { cartData?.carts?.map((item) => {
@@ -148,25 +154,47 @@
                             </div>
                             );
                         })}
+                        
+                        {/* Show shop more button When cart empty */}
+                        {cartData?.carts?.length < 1 && (
+                            <div className='d-flex mt-4 empty-bg'>
+                                <div className='w-100 position-relative'>
+                                    <p className="empty-text">Your cart is empty.</p>
+                                    <div className="add_to_cart">
+                                        <button type="button" className="btn btn-success cart-button">
+                                            <div className="d-flex justify-content-center align-items-center">
+                                                <i className="bi bi-cart4 cart-icon"></i>
+                                                <NavLink className="cart-content" to="/products">
+                                                    <p className="">Head to the shop !</p>
+                                                </NavLink>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className='col-md-5 col-xl-4 bg-white py-5'>
-                        <div className="orderInfo">
-                            <div className='d-flex justify-content-between mt-4'>
-                                <p className='mb-0 fw-bold'>Subtotal</p>
-                                <p className='mb-0 fw-bold'>AUD${cartData?.final_total}</p>
+                        {/* No show subtotal when cart is empty */}
+                        {cartData?.carts?.length > 0 && (
+                            <div className="orderInfo">
+                                <div className='d-flex justify-content-between mt-4'>
+                                    <p className='mb-0 fw-bold'>Subtotal</p>
+                                    <p className='mb-0 fw-bold'>AUD${cartData?.final_total}</p>
+                                </div>
+                                <div className='d-flex justify-content-between mt-4'>
+                                    <p className='mb-0 fw-bold'>Shipping</p>
+                                    <p className='mb-0 fw-bold'>FREE</p>
+                                </div>
+                                <a
+                                    href='./checkout.html'
+                                    className='btn btn-success w-100 mt-4 rounded-0 py-3'
+                                >
+                                    Confirm
+                                </a>
                             </div>
-                            <div className='d-flex justify-content-between mt-4'>
-                                <p className='mb-0 fw-bold'>Shipping</p>
-                                <p className='mb-0 fw-bold'>FREE</p>
-                            </div>
-                            <a
-                                href='./checkout.html'
-                                className='btn btn-success w-100 mt-4 rounded-0 py-3'
-                            >
-                                Confirm
-                            </a>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
