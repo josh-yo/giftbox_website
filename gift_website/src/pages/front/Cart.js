@@ -9,8 +9,9 @@
     function Cart() {
         // Cart Animation
         const [ activeAnimation, setActiveAnimation ] = useState({});
+        const [ clearAnimation, setClearAnimation ] = useState(false);
 
-        const { cartData, getCart } = useOutletContext();
+        const { cartData, setCartData, getCart } = useOutletContext();
         // Remove an item from the cart by ID
         const removeCartItem = async ( id ) => {
             try {
@@ -20,6 +21,20 @@
                 console.log(error);
             }
         }
+        
+        // Clear the cart
+        const clearCart = async ( id ) => {
+            try {
+                setClearAnimation(true);
+                const result = await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH}/carts`);
+                setCartData({ carts: [] });
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setClearAnimation(false);
+            }
+        }
+
         // Update cart item quantity
         const updateCartItem = async ( item, quantity, id ) => {
             // setActiveAnimation(id);
@@ -84,78 +99,84 @@
         return(<>
             <div className='container'>
                 <div className='row justify-content-center'>
-                    <div
-                        className='col-md-7 col-xl-6 bg-white py-5'
-                        style={{minHeight: 'calc(100vh - 56px - 76px)'}}
-                    >
+                    <div className='col-md-7 col-xl-6 bg-white py-5'>
                         <div className='d-flex justify-content-between align-items-end'>
                             <h2 className='order-title'>Your order</h2>
                             {cartData?.carts?.length > 1 && (
-                                <p className='cleanAll-btn'>
-                                    <i class="bi bi-trash mx-2"></i>
+                                <p className='cleanAll-btn' onClick={clearCart}>
+                                    <i className="bi bi-trash mx-2"></i>
                                     Clear Cart
                                 </p>
                             )}
                         </div>
 
-                        { cartData?.carts?.map((item) => {
-                            return (
-                            <div className='d-flex mt-4 bg-light' key={item.id}>
-                                {/* photo */}
-                                <Link to={`/product/${item.product_id}`} className="cart-item">
-                                    <img
-                                        src={item.product.imageUrl}
-                                        alt=''
-                                        className='object-cover'
-                                    />
-                                </Link>
-                                
-                                <div className='w-100 p-3 position-relative'>
-                                    { activeAnimation[item.id] && (
-                                        <div className="cart-loading-bg">
-                                            <div className="cart-loading-animation">
-                                                <OrbitProgress variant="spokes" color={["#FCCA00"]} size="medium" text="" textColor="" />
-                                            </div>
-                                        </div>
-                                    )}
-                                    <button
-                                        type="button"
-                                        className='position-absolute btn'
-                                        style={{ top: '12px', right: '10px' }}
-                                        onClick={() => checkRemoveItem(item)}
-                                    >
-                                        <i className='bi bi-x-lg'></i>
-                                    </button>
-                                    {/* price */}
-                                    <div className="d-flex align-items-center">
-                                        <p className='mb-1 text-muted fw-bold specialPrice' style={{ fontSize: '14px' }}>
-                                            ${item.product.price}
-                                        </p>
-                                        <small className='mb-1 text-muted originalPrice'>
-                                            $ {item.product.origin_price}
-                                        </small>
-                                    {/* product title */}
+                        <div className="cart-item-container position-relative">
+                            { clearAnimation && (
+                                <div className="clear-cart-bg">
+                                    <div className="cart-loading-animation">
+                                        <OrbitProgress variant="spokes" color={["#FCCA00"]} size="medium" text="" textColor="" />
                                     </div>
+                                </div>
+                            )}
+                            { cartData?.carts?.map((item) => {
+                                return (
+                                <div className='d-flex mt-4 bg-light' key={item.id}>
+                                    {/* photo */}
                                     <Link to={`/product/${item.product_id}`} className="cart-item">
-                                        <p className='mb-0 fw-bold'>{item.product.title}</p>
+                                        <img
+                                            src={item.product.imageUrl}
+                                            alt=''
+                                            className='object-cover'
+                                        />
                                     </Link>
-                                    {/* QTY Button */}
-                                    <div className='d-flex justify-content-between align-items-center w-100'>
-                                        <div className='input-group align-items-center QTYcontainer'>
-                                            <div>QTY：</div>
-                                            <CartItem 
-                                                cartQuantity={item.qty} 
-                                                increaseQuantity={() => updateCartItem(item, item.qty + 1, item.id)}
-                                                decreaseQuantity={() => updateCartItem(item, item.qty - 1, item.id)}
-                                            />
+                                    
+                                    <div className='w-100 p-3 position-relative'>
+                                        { activeAnimation[item.id] && (
+                                            <div className="cart-loading-bg">
+                                                <div className="cart-loading-animation">
+                                                    <OrbitProgress variant="spokes" color={["#FCCA00"]} size="medium" text="" textColor="" />
+                                                </div>
+                                            </div>
+                                        )}
+                                        <button
+                                            type="button"
+                                            className='position-absolute btn'
+                                            style={{ top: '12px', right: '10px' }}
+                                            onClick={() => checkRemoveItem(item)}
+                                        >
+                                            <i className='bi bi-x-lg'></i>
+                                        </button>
+                                        {/* price */}
+                                        <div className="d-flex align-items-center">
+                                            <p className='mb-1 text-muted fw-bold specialPrice' style={{ fontSize: '14px' }}>
+                                                ${item.product.price}
+                                            </p>
+                                            <small className='mb-1 text-muted originalPrice'>
+                                                $ {item.product.origin_price}
+                                            </small>
+                                        {/* product title */}
+                                        </div>
+                                        <Link to={`/product/${item.product_id}`} className="cart-item">
+                                            <p className='mb-0 fw-bold'>{item.product.title}</p>
+                                        </Link>
+                                        {/* QTY Button */}
+                                        <div className='d-flex justify-content-between align-items-center w-100'>
+                                            <div className='input-group align-items-center QTYcontainer'>
+                                                <div>QTY：</div>
+                                                <CartItem 
+                                                    cartQuantity={item.qty} 
+                                                    increaseQuantity={() => updateCartItem(item, item.qty + 1, item.id)}
+                                                    decreaseQuantity={() => updateCartItem(item, item.qty - 1, item.id)}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                         
-                        {/* Show shop more button When cart empty */}
+                        {/* Show shop more button when cart empty */}
                         {cartData?.carts?.length < 1 && (
                             <div className='d-flex mt-4 empty-bg'>
                                 <div className='w-100 position-relative'>
@@ -175,7 +196,7 @@
                         )}
                     </div>
 
-                    <div className='col-md-5 col-xl-4 bg-white py-5'>
+                    <div className='col-md-5 col-xl-4 bg-white py-5 subtotal'>
                         {/* No show subtotal when cart is empty */}
                         {cartData?.carts?.length > 0 && (
                             <div className="orderInfo">

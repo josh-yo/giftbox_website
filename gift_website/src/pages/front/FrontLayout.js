@@ -63,7 +63,7 @@ function FrontLayout(){
     
     <Navbar cartData={cartData} cartIconRef={cartIconRef}/>
 
-    <Outlet context={{ cartData, getCart, cartIconRef, scrollNextPage, setIsLoading }}></Outlet>
+    <Outlet context={{ cartData, setCartData, getCart, cartIconRef, scrollNextPage, setIsLoading }}></Outlet>
 
     <Footer/>
 
