@@ -214,12 +214,17 @@
                                     <p className='mb-0 fw-bold'>Shipping</p>
                                     <p className='mb-0 fw-bold'>FREE</p>
                                 </div>
-                                <a
-                                    href='./checkout.html'
-                                    className='btn btn-success w-100 mt-4 rounded-0 py-3'
-                                >
-                                    Confirm
-                                </a>
+                                <hr className="my-4" />
+                                <div className='d-flex justify-content-between mt-4'>
+                                    <p className='mb-0 fw-bold'>Total</p>
+                                    <p className='mb-0 fw-bold'>AUD${cartData?.final_total}</p>
+                                </div>
+                                <div className='d-flex justify-content-between mt-4'>
+                                    <p className='mb-0'>We currently process orders manually. <br />Contact us to place your order.</p>
+                                </div>
+                                <NavLink className="cart-content btn btn-success w-100 mt-4 rounded-0 py-3" to="/contact">
+                                    <p className="">Place Order</p>
+                                </NavLink>
                             </div>
                         )}
                     </div>
