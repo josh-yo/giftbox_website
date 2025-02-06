@@ -220,10 +220,23 @@
                                     <p className='mb-0 fw-bold'>AUD${cartData?.final_total}</p>
                                 </div>
                                 <div className='d-flex justify-content-between mt-4'>
-                                    <p className='mb-0'>We currently process orders manually. <br />Contact us to place your order.</p>
+                                    <p className='mb-0'>
+                                        We currently process orders manually.
+                                        <br />
+                                        Click "Place Order" Button to continue.
+                                    </p>
                                 </div>
-                                <NavLink className="cart-content btn btn-success w-100 mt-4 rounded-0 py-3" to="/contact">
-                                    <p className="">Place Order</p>
+                                <NavLink className="cart-content btn btn-success w-100 mt-4 rounded-0 py-3" to="/contact?inquiryType=order">
+                                    <p className="">
+                                        <i className="bi bi-chevron-double-right mx-2"></i>
+                                        Place Order
+                                    </p>
+                                </NavLink>
+                                <NavLink className="shop-more-btn cart-content btn w-100 mt-4 rounded-0 py-3" to="/products">
+                                    <p className="">
+                                        <i className="bi bi-cart4 mx-2"></i>
+                                        Shop More
+                                    </p>
                                 </NavLink>
                             </div>
                         )}
