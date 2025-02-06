@@ -24,12 +24,18 @@
         
         // Clear the cart
         const clearCart = async ( id ) => {
+            // If the user cancels, stop execution early.
+            if (!window.confirm("Oops! You’re about to clear your cart. Do you want to continue?")) {
+                return;
+            }
+
             try {
                 setClearAnimation(true);
                 const result = await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH}/carts`);
                 setCartData({ carts: [] });
             } catch (error) {
                 console.log(error);
+                toast.error("Failed to clear cart. Please try again.");
             } finally {
                 setClearAnimation(false);
             }
