@@ -95,13 +95,13 @@ function Footer() {
                         <i className="bi bi-envelope-fill me-2"></i>giftbox@services.com
                         </p>
                         <div className="d-flex">
-                            <a href="#facebook" className="footer-social me-3">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="footer-social me-3" style={{color: "#4267B2"}}>
                                 <i className="bi bi-facebook"></i>
                             </a>
-                            <a href="#instagram" className="footer-social me-3">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="footer-social me-3" style={{color: "#E1306C"}}>
                                 <i className="bi bi-instagram"></i>
                             </a>
-                            <a href="#youtube" className="footer-social">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="footer-social" style={{color: "#FF0000"}}>
                                 <i className="bi bi-youtube"></i>
                             </a>
                         </div>
