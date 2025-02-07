@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function HoverImage({ product }){
     const [hoverImage, setHoverImage] = useState(product?.imageUrl);
