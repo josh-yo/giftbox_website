@@ -2,7 +2,13 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function HoverImage({ product }){
-    const [hoverImage, setHoverImage] = useState(product.imageUrl);
+    const [hoverImage, setHoverImage] = useState(product?.imageUrl);
+
+    useEffect(() => {
+        if (product?.imageUrl) {
+            setHoverImage(product.imageUrl);
+        }
+    }, [product?.imageUrl]);
 
     return(<>
         <div 
