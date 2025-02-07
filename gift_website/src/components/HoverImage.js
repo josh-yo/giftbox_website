@@ -7,8 +7,12 @@ function HoverImage({ product }){
     return(<>
         <div 
             className="image-container"
+            // PC Device
             onMouseEnter={() => setHoverImage(product.imagesUrl[0])}
             onMouseLeave={() => setHoverImage(product.imageUrl)}
+            // Mobile Device
+            onTouchStart={() => setHoverImage(product.imagesUrl[0])}
+            onTouchEnd={() => setHoverImage(product.imageUrl)}
         >
             <Link to={`/product/${product.id}`} className="ratio ratio-4x3" data-product-id={product.id}>
             <img src={hoverImage} className="product-image card-img-top rounded-0" alt={product.title}/>
