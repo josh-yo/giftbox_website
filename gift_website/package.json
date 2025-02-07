@@ -2,7 +2,7 @@
   "name": "gift_website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://josh-yo.github.io/portfolio/",
+  "homepage": "https://josh-yo.github.io/giftbox_website/",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@testing-library/jest-dom": "^5.17.0",
