@@ -14,7 +14,7 @@ function AboutUs() {
                 <div className="col-6 col-md-6 col-lg-3">
                     <p className="content-title">Gifts bring people together</p>
                     <p className="CEOcontent">We believe that every gift has the power to strengthen relationships, bring joy, and make life’s moments even more special. Our mission is to make giving simple, personal, and unforgettable.</p>
-                    <p className="CEOcontent text-end">— Lily Anderson (CEO) —</p>
+                    <p className="CEOcontent text-end">— Lily Anderson —</p>
                 </div>
             </div>
         </div>

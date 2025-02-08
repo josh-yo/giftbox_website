@@ -27,7 +27,7 @@ function Navbar({ cartData, cartIconRef }){
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHomePage]);
 
     return(<>
 
