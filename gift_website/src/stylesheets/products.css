@@ -61,6 +61,10 @@
     object-fit: cover;
     object-position: center;
     transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    height: 100%;
+}
+.image-container{
+    aspect-ratio: 4/3;
 }
 .image-container:hover .product-image {
     transform: scale(1.1);
