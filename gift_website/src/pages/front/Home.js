@@ -88,10 +88,13 @@ function Home({ allproducts }) {
       <div className="fv-content">
           A gift as special as your love
       </div>
-      <a href="#scroll-section" className="scroll-link" onClick={(e) => {
-          e.preventDefault();
-          document.querySelector("#scroll-section")?.scrollIntoView({ behavior: "smooth" });
-      }}>
+      <a href="#scroll-section" className="scroll-link" 
+        onClick={(e) => {
+            e.preventDefault();
+            document.querySelector("#scroll-section")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        onContextMenu={(e) => e.preventDefault()}
+      >
         <Lottie className="scroll-down-animation" animationData={ScrollDownAnimation} loop={true} />
       </a>
     </div>
