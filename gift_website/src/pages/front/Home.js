@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { addToCart } from "../../components/AddToCart";
 import { OrbitProgress } from "react-loading-indicators";
+import Lottie from "lottie-react";
+import ScrollDownAnimation from "./ScrollDownAnimation.json";
 import fvVideo from './fv_video.mp4'
 import brand_video1 from './brand_video1.mp4'
 import brand_video2 from './brand_video2.mp4'
@@ -86,11 +88,17 @@ function Home({ allproducts }) {
       <div className="fv-content">
           A gift as special as your love
       </div>
+      <a href="#scroll-section" className="scroll-link" onClick={(e) => {
+          e.preventDefault();
+          document.querySelector("#scroll-section")?.scrollIntoView({ behavior: "smooth" });
+      }}>
+        <Lottie className="scroll-down-animation" animationData={ScrollDownAnimation} loop={true} />
+      </a>
     </div>
     {/* Top Sales */}
     <div className="container">
       <div className="row mt-5">
-        <h3 className='topSales'>Top Sales</h3>
+        <h3 id="scroll-section" className='topSales'>Top Sales</h3>
         {topSalesProducts.map((product, index) => {
             return(
               <div className="col-md-4 mt-4" key={index}>
