@@ -67,7 +67,7 @@ function Navbar({ cartData, cartIconRef }){
                     <NavLink className="nav-item nav-link home me-4" to="/" onClick={() => setIsOpen(false)}>Home <span className="sr-only"></span></NavLink>
                     <NavLink className="nav-item nav-link about me-4" to="/aboutus" onClick={() => setIsOpen(false)}>About</NavLink>
                     <NavLink className="nav-item nav-link products me-4" to="/products" onClick={() => setIsOpen(false)}>Product</NavLink>
-                    <NavLink className="nav-item nav-link detail me-4" to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink>1
+                    <NavLink className="nav-item nav-link detail me-4" to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
                 </div>
                 {/* icon */}
                 <div className="d-flex align-items-center icon">

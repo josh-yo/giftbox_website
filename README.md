@@ -18,7 +18,8 @@ This is a React-based e-commerce gift store project. It mainly displays product 
 👉 [View the website here](https://josh-yo.github.io/giftbox_website/)
 
 ## 🌿 Branches
-- `main`: The primary source code for development.
+- `main`: The stable branch for production-ready code after testing and validation.
+- `Gift_Website`: The branch for developing and testing new features before merging into `main`.
 - `gh-pages`: The branch used for deploying the static site via GitHub Pages.
 
 ## ✨ Main Features

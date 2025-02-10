@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, NavLink, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
 import { ThreeDot } from "react-loading-indicators";
 import axios from 'axios';
@@ -81,20 +81,15 @@ function FrontLayout(){
             bottom: '0',
         }}
     >
-        Coding by Josh 
-        <a href="https://github.com/josh-yo" target="_blank" style={{marginLeft: '10px'}}>
+        
+        <a href="https://github.com/josh-yo" target="_blank" style={{textDecoration: 'none', color: 'white'}}>
+            Coding by Josh
+        </a>
+        <a href="https://github.com/josh-yo" target="_blank" style={{marginLeft: '10px', marginRight: '10px'}}>
             <i className="bi bi-github" style={{fontSize:'36px', color:'white'}}></i>
         </a>
+        <NavLink to="/login" className="admin-panel" style={{textDecoration: 'none', color: 'white'}}>Admin Panel</NavLink>
     </footer>
-
-    {/* <div className="container-fluid">
-        <div className="row">
-            <div className="col-12 author p-0 d-block" style={{fontSize:'15px'}}>
-                <p>test</p>
-            </div>
-        </div>
-    </div>   */}
-
     </>)
 }
 
