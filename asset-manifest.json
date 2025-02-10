@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.ba6cf679.css",
-    "main.js": "/portfolio/static/js/main.07d4ae36.js",
-    "static/js/453.b3b00d75.chunk.js": "/portfolio/static/js/453.b3b00d75.chunk.js",
-    "static/media/fv_video.mp4": "/portfolio/static/media/fv_video.07da28548ef9449ca515.mp4",
-    "static/media/brand_video1.mp4": "/portfolio/static/media/brand_video1.6c5c13f36c739545e036.mp4",
-    "static/media/brand_video2.mp4": "/portfolio/static/media/brand_video2.64d1c9bb995d155961ab.mp4",
-    "static/media/bootstrap-icons.woff?": "/portfolio/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
-    "static/media/bootstrap-icons.woff2?": "/portfolio/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
-    "static/media/logo.png": "/portfolio/static/media/logo.bcb95f8ef5287ccfd8f7.png",
-    "static/media/mastercard.svg": "/portfolio/static/media/mastercard.426087d87e8702667429e6bb8e8e21c1.svg",
-    "static/media/paypal.svg": "/portfolio/static/media/paypal.881623baff2b4902971881afa1f4f35f.svg",
-    "static/media/amex.svg": "/portfolio/static/media/amex.ae302252032d9948fb15a72174d72b33.svg",
-    "static/media/googlepay.svg": "/portfolio/static/media/googlepay.53b6f07f7afdef70705141e4bc885d8b.svg",
-    "static/media/applepay.svg": "/portfolio/static/media/applepay.30d1b1b397de8318685b94306f5b9142.svg",
-    "static/media/visa.svg": "/portfolio/static/media/visa.ea04cf37218d960f940670f65fd5bdbf.svg",
-    "index.html": "/portfolio/index.html",
-    "main.ba6cf679.css.map": "/portfolio/static/css/main.ba6cf679.css.map",
-    "main.07d4ae36.js.map": "/portfolio/static/js/main.07d4ae36.js.map",
-    "453.b3b00d75.chunk.js.map": "/portfolio/static/js/453.b3b00d75.chunk.js.map"
+    "main.css": "/giftbox_website/static/css/main.55fd35b0.css",
+    "main.js": "/giftbox_website/static/js/main.254e8fa3.js",
+    "static/js/453.b3b00d75.chunk.js": "/giftbox_website/static/js/453.b3b00d75.chunk.js",
+    "static/media/fv_video.mp4": "/giftbox_website/static/media/fv_video.07da28548ef9449ca515.mp4",
+    "static/media/brand_video1.mp4": "/giftbox_website/static/media/brand_video1.6c5c13f36c739545e036.mp4",
+    "static/media/brand_video2.mp4": "/giftbox_website/static/media/brand_video2.64d1c9bb995d155961ab.mp4",
+    "static/media/bootstrap-icons.woff?": "/giftbox_website/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/bootstrap-icons.woff2?": "/giftbox_website/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
+    "static/media/logo.png": "/giftbox_website/static/media/logo.bcb95f8ef5287ccfd8f7.png",
+    "static/media/mastercard.svg": "/giftbox_website/static/media/mastercard.426087d87e8702667429e6bb8e8e21c1.svg",
+    "static/media/paypal.svg": "/giftbox_website/static/media/paypal.881623baff2b4902971881afa1f4f35f.svg",
+    "static/media/amex.svg": "/giftbox_website/static/media/amex.ae302252032d9948fb15a72174d72b33.svg",
+    "static/media/googlepay.svg": "/giftbox_website/static/media/googlepay.53b6f07f7afdef70705141e4bc885d8b.svg",
+    "static/media/applepay.svg": "/giftbox_website/static/media/applepay.30d1b1b397de8318685b94306f5b9142.svg",
+    "static/media/visa.svg": "/giftbox_website/static/media/visa.ea04cf37218d960f940670f65fd5bdbf.svg",
+    "index.html": "/giftbox_website/index.html",
+    "main.55fd35b0.css.map": "/giftbox_website/static/css/main.55fd35b0.css.map",
+    "main.254e8fa3.js.map": "/giftbox_website/static/js/main.254e8fa3.js.map",
+    "453.b3b00d75.chunk.js.map": "/giftbox_website/static/js/453.b3b00d75.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba6cf679.css",
-    "static/js/main.07d4ae36.js"
+    "static/css/main.55fd35b0.css",
+    "static/js/main.254e8fa3.js"
   ]
 }
