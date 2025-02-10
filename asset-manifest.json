@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/giftbox_website/static/css/main.3b41bd93.css",
-    "main.js": "/giftbox_website/static/js/main.5c2baef6.js",
+    "main.js": "/giftbox_website/static/js/main.a145ad99.js",
     "static/js/453.b3b00d75.chunk.js": "/giftbox_website/static/js/453.b3b00d75.chunk.js",
     "static/media/fv_video.mp4": "/giftbox_website/static/media/fv_video.07da28548ef9449ca515.mp4",
     "static/media/brand_video1.mp4": "/giftbox_website/static/media/brand_video1.6c5c13f36c739545e036.mp4",
@@ -17,11 +17,11 @@
     "static/media/visa.svg": "/giftbox_website/static/media/visa.ea04cf37218d960f940670f65fd5bdbf.svg",
     "index.html": "/giftbox_website/index.html",
     "main.3b41bd93.css.map": "/giftbox_website/static/css/main.3b41bd93.css.map",
-    "main.5c2baef6.js.map": "/giftbox_website/static/js/main.5c2baef6.js.map",
+    "main.a145ad99.js.map": "/giftbox_website/static/js/main.a145ad99.js.map",
     "453.b3b00d75.chunk.js.map": "/giftbox_website/static/js/453.b3b00d75.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3b41bd93.css",
-    "static/js/main.5c2baef6.js"
+    "static/js/main.a145ad99.js"
   ]
 }
