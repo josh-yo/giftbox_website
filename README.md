@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# 🎁 Gift Shop - E-commerce Gift Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#)
+[![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff)](#)
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
+[![React Router](https://img.shields.io/badge/React_Router-CA4245?logo=react-router&logoColor=white)](#)
+[![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
+[![JSON](https://img.shields.io/badge/JSON-000?logo=json&logoColor=fff)](#)
+[![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?logo=openai&logoColor=white)](#)
+![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-lightgrey)
 
-## Available Scripts
+This is a React-based e-commerce gift store project. It mainly displays product listings, a shopping cart, and an admin panel.
 
-In the project directory, you can run:
+## 🎥 Live Demo
+![Page Live Demo](./live_demo.gif)
+👉 [View the website here](https://josh-yo.github.io/giftbox_website/)
 
-### `npm start`
+## 🌿 Branches
+- `main`: The primary source code for development.
+- `gh-pages`: The branch used for deploying the static site via GitHub Pages.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Main Features
+### 🛍 Shopping & Product Features
+- 🎁 **Product Display**: Browse different gift items and view details.
+- 🔍 **Category Filter**: Quickly select different product categories to find the gift.
+- 🤝 **You Might Also Like**: A selection of suggested products to explore more gift ideas.
+- 🛒 **Shopping Cart**: Add, remove, clear items, and simulate checkout process.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎨 UI & Visual Enhancements
 
-### `npm run build`
+- 📱 **Responsive Design (RWD)**: Optimized for mobile, tablet, and desktop devices.
+- 🚀 **404 Page**: Custom 404 page with **Lottie animations** to inform users when a page is not found and redirect them back to the site.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![404 Page Demo](./404page_demo.gif)
+👉 [Preview the 404 Page](https://josh-yo.github.io/giftbox_website/#/wrongURL_test)
+- ⏳ **Loading Animation**: Uses **React Loading** for full-screen animations during product fetching to improve user experience.
+- 🎞 **Shopping Cart Animation**: Flying effect & Toast notifications for success/fail.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Animation Demo](./animation_demo.gif?v=0)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### 🔧 Optimization & Resources
+- 🔍 **SEO Optimization**: Enhanced visibility with meta tags for keywords, descriptions, Open Graph, and mobile-friendly settings.
+- 📸 **Content Resources**: Uses free videos from **Pexels**, images from **Unsplash**, and animations from **Lottie**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🛠️ Admin & Management
+- 🔧 **Admin Panel**: Manage product listings.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🏗 Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Frontend**: HTML, CSS, Bootstrap 5, React
+- **Backend**: Node.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🤖 AI Assistance
 
-## Learn More
+This project utilized ChatGPT for content writing, spell checking, and grammar verification.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🚀 Installation & Run
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Clone the project:
 
-### Code Splitting
+```
+git clone https://github.com/josh-yo/giftbox_website.git
+cd giftbox_website
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Install dependencies:
+```
+npm install
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Start the development server:
+```
+npm start
+```
