@@ -10,6 +10,17 @@ function Navbar({ cartData, cartIconRef }){
 
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+
+    // Navbar toggler
+    const [isOpen, setIsOpen] = useState(false);
+    useEffect(() => {
+        const navbarCollapse = document.getElementById("navbarNavAltMarkup");
+        if (isOpen) {
+            navbarCollapse.classList.add("show");
+        } else {
+            navbarCollapse.classList.remove("show");
+        }
+    }, [isOpen]);
     
     useEffect(() => {
         if (!isHomePage) {
@@ -46,16 +57,17 @@ function Navbar({ cartData, cartIconRef }){
             <h1 className="h5">GIFT BOX</h1>
             </NavLink>
             
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded={isOpen} aria-label="Toggle navigation" onClick={() => setIsOpen(!isOpen)}>
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div 
+            className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <NavLink className="nav-item nav-link home me-4" to="/">Home <span className="sr-only"></span></NavLink>
-                    <NavLink className="nav-item nav-link about me-4" to="/aboutus">About</NavLink>
-                    <NavLink className="nav-item nav-link products me-4" to="/products">Product</NavLink>
-                    <NavLink className="nav-item nav-link detail me-4" to="/contact">Contact</NavLink>
+                    <NavLink className="nav-item nav-link home me-4" to="/" onClick={() => setIsOpen(false)}>Home <span className="sr-only"></span></NavLink>
+                    <NavLink className="nav-item nav-link about me-4" to="/aboutus" onClick={() => setIsOpen(false)}>About</NavLink>
+                    <NavLink className="nav-item nav-link products me-4" to="/products" onClick={() => setIsOpen(false)}>Product</NavLink>
+                    <NavLink className="nav-item nav-link detail me-4" to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink>1
                 </div>
                 {/* icon */}
                 <div className="d-flex align-items-center icon">
@@ -63,7 +75,7 @@ function Navbar({ cartData, cartIconRef }){
                     {/* <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-person-circle nav-icon" style={{color: 'white'}}></i></NavLink>
                     <NavLink className="nav-item nav-link" to="/cart"><i className="bi bi-bookmark-heart nav-icon" style={{color: 'white'}}></i></NavLink> */}
                     
-                    <NavLink className="nav-item nav-link position-relative" to="/cart">
+                    <NavLink className="nav-item nav-link position-relative" to="/cart" onClick={() => setIsOpen(false)}>
                         <i className="bi bi-cart4 nav-icon fs-5" style={{color: 'white'}} ref={cartIconRef}></i>
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-quantity">
                             {cartData?.carts?.length}
