@@ -89,6 +89,7 @@ function Home({ allproducts }) {
           A gift as special as your love
       </div>
       <button 
+        className="scroll-button"
         onClick={() => document.querySelector("#scroll-section")?.scrollIntoView({ behavior: "smooth" })}
       >
         <Lottie className="scroll-down-animation" animationData={ScrollDownAnimation} loop={true} />

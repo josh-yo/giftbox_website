@@ -62,3 +62,6 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
+.scroll-button{
+    all: unset;
+}
